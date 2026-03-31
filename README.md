@@ -1,16 +1,67 @@
-# React + Vite
+# Ravnish Kumar — Developer Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+> Hacker aesthetic meets premium motion design.  
+> Built with React 19, GSAP, Framer Motion, Lenis, and Vite.
 
-Currently, two official plugins are available:
+**Live:** [ravnish.dev](https://ravnish.dev)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+---
 
-## React Compiler
+## Tech Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+| Category | Library |
+|---|---|
+| Framework | React 19 + Vite 8 |
+| Animation | GSAP 3 + Framer Motion 12 |
+| Scroll | Lenis (synced to GSAP ticker) |
+| Routing | React Router DOM v7 |
+| Icons | React Icons v5 |
+| Text animation | SplitType |
+| Deployment | GitHub Pages via `gh-pages` |
 
-## Expanding the ESLint configuration
+## Project Structure
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+```
+src/
+  components/     # Shared UI: Navbar, Cursor, Background, Terminal, Transition
+  pages/          # Route-level pages: Home, Projects, Blogs, Contact
+  assets/         # Images and SVGs
+  styles/         # Component-scoped CSS (background.css)
+  App.jsx         # Routes + Lenis setup
+  main.jsx        # React entry point
+  index.css       # Global design tokens + utility classes
+public/
+  resume/         # PDF resume (served at /resume/RAVNISH_KUMAR_CV.pdf)
+  favicon.svg
+```
+
+## Local Development
+
+```bash
+npm install
+npm run dev       # http://localhost:5173
+```
+
+## Deploy to GitHub Pages
+
+```bash
+npm run deploy    # builds + pushes to gh-pages branch
+```
+
+> Requires CNAME set to `ravnish.dev` and GitHub Pages configured to serve from `gh-pages` branch.
+
+## Features
+
+- **ASCII portrait background** — profile photo rendered in green ASCII chars with mouse-reactive glow
+- **Cyber dot grid + particle constellation** — interactive canvas with proximity brightening and connecting lines
+- **Ambient orb system** — 3 CSS blur orbs with GPU-composited drift animation
+- **Cursor spotlight** — lerp-smoothed radial glow that follows the mouse
+- **Custom cursor** — SVG arrow with hover scale/glow state
+- **Kinetic typography** — SplitType + GSAP character stagger reveals
+- **Magnetic interactive elements** — GSAP quickTo elastic hover on cards and nav items
+- **Framer Motion page transitions** — slide-in/out wipe on route change
+- **Smooth scroll** — Lenis synced to GSAP ticker (single rAF loop)
+
+---
+
+© 2026 Ravnish Kumar

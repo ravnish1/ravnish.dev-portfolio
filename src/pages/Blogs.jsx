@@ -1,124 +1,146 @@
-import React, { useEffect, useRef } from 'react'
-import { FaMedium, FaCalendarAlt, FaExternalLinkAlt, FaClock, FaHourglassHalf, FaArrowRight } from 'react-icons/fa'
-import gsap from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { motion } from 'framer-motion'
 
-gsap.registerPlugin(ScrollTrigger)
+const POSTS = [
+  {
+    title:    'Harnessing the Power of AI: Why Some Thrive While Others Decline',
+    date:     '2024',
+    readTime: '5 min read',
+    tags:     ['AI', 'Technology', 'Innovation'],
+    href:     'https://medium.com/@ravkr9968/harnessing-the-power-of-ai-why-some-thrive-while-others-decline-bed3c4364bf4',
+    live:     true,
+  },
+  {
+    title:    'Building Scalable SaaS Applications',
+    date:     'Coming Soon',
+    readTime: '—',
+    tags:     ['SaaS', 'Architecture', 'Scalability'],
+    href:     null,
+    live:     false,
+  },
+]
+
+const stagger = { animate: { transition: { staggerChildren: 0.09 } } }
+const fadeUp  = { initial: { opacity: 0, y: 14 }, animate: { opacity: 1, y: 0 } }
 
 export default function Blogs() {
-  const containerRef = useRef(null)
-
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      // Header Animation
-      gsap.from(".kinetic-text-blogs", {
-        y: 50, opacity: 0, duration: 1, ease: "power3.out", delay: 0.2
-      })
-      gsap.from(".subtitle", {
-        y: 20, opacity: 0, duration: 1, ease: "power3.out", delay: 0.4
-      })
-
-      // Card reveals
-      const cards = gsap.utils.toArray(".blog-card")
-      cards.forEach((card) => {
-        ScrollTrigger.create({
-          trigger: card,
-          start: "top 85%",
-          onEnter: () => {
-            gsap.fromTo(card,
-              { y: 80, opacity: 0, rotationX: 5 },
-              { y: 0, opacity: 1, rotationX: 0, duration: 0.8, ease: "power3.out" }
-            )
-          }
-        })
-      })
-    }, containerRef)
-
-    return () => ctx.revert()
-  }, [])
-
   return (
-    <section className="projects-section" ref={containerRef}>
-      <div className="projects-header">
-        <h1 className="kinetic-text-blogs" style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(2rem, 5vw, 4rem)', textTransform: 'uppercase', marginBottom: '1rem' }}>
-          My Blog
-        </h1>
-        <p className="subtitle" style={{ fontFamily: 'var(--font-code)', color: 'var(--text-secondary)' }}>
-          Insights on technology, development, and AI innovation.
-        </p>
-      </div>
+    <div
+      className="page-wrapper"
+      style={{
+        minHeight: 'calc(100vh - 64px)',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+      }}
+    >
+      <div className="container">
+        <motion.div
+          variants={stagger}
+          initial="initial"
+          animate="animate"
+          style={{
+            display: 'grid',
+            gridTemplateColumns: '1fr 2fr',
+            gap: '6rem',
+            alignItems: 'center',
+          }}
+        >
 
-      <div className="projects-grid" style={{
-        display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem', maxWidth: '1200px', margin: '0 auto'
-      }}>
-        {/* Blog Card 1 */}
-        <article className="project-card neo-panel magnetic-card">
-          <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '1rem', color: 'var(--text-secondary)', fontSize: '0.85rem', fontFamily: 'var(--font-code)' }}>
-            <div style={{ display: 'flex', gap: '8px', alignItems: 'center', color: 'var(--text-primary)' }}>
-              <FaMedium /> <span>Medium</span>
-            </div>
-            <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
-              <FaCalendarAlt /> <span>Recent</span>
-            </div>
-          </div>
-          
-          <div style={{ flex: 1 }}>
-            <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '1.2rem', marginBottom: '1rem', transform: 'translateZ(20px)' }}>
-              Harnessing the Power of AI: Why Some Thrive While Others Decline
-            </h3>
-            <p style={{ color: 'var(--text-secondary)', fontSize: '0.95rem', marginBottom: '1.5rem', transform: 'translateZ(10px)' }}>
-              Exploring how artificial intelligence is reshaping industries and why adaptation is key to success in the modern digital landscape.
+          {/* ── LEFT — heading ────────────────────────────────── */}
+          <motion.div variants={fadeUp} transition={{ duration: 0.45 }}>
+            <p className="section-label" style={{ marginBottom: '0.6rem' }}>Writing</p>
+            <h1 style={{
+              fontSize: 'clamp(2.5rem, 5vw, 4rem)',
+              fontWeight: 700,
+              letterSpacing: '-0.03em',
+              lineHeight: 1.05,
+              color: 'var(--text-1)',
+              marginBottom: '1.25rem',
+            }}>
+              Blog
+            </h1>
+            <p style={{
+              fontSize: '0.9rem',
+              color: 'var(--text-2)',
+              lineHeight: 1.7,
+              marginBottom: '2rem',
+            }}>
+              Thoughts on technology, development, and AI.
             </p>
-            <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap', marginBottom: '2rem' }}>
-              {['AI', 'Technology', 'Innovation'].map(tag => (
-                <span key={tag} style={{ padding: '4px 10px', background: 'rgba(255,255,255,0.05)', borderRadius: '4px', fontSize: '0.75rem', border: '1px solid rgba(255,255,255,0.1)' }}>{tag}</span>
-              ))}
-            </div>
-          </div>
+            <a
+              href="https://medium.com/@ravkr9968"
+              target="_blank"
+              rel="noreferrer"
+              className="btn btn-ghost"
+              style={{ fontSize: '0.78rem', padding: '0.6rem 1.2rem' }}
+            >
+              Follow on Medium →
+            </a>
+          </motion.div>
 
-          <a href="https://medium.com/@ravkr9968/harnessing-the-power-of-ai-why-some-thrive-while-others-decline-bed3c4364bf4" target="_blank" rel="noreferrer" className="neo-btn primary magnetic" style={{ marginTop: 'auto', justifySelf: 'start', padding: '0.8rem 1.5rem', width: 'max-content' }}>
-            <span>Read on Medium</span>
-            <FaExternalLinkAlt />
-          </a>
-        </article>
+          {/* ── RIGHT — post list ─────────────────────────────── */}
+          <motion.div variants={fadeUp} transition={{ duration: 0.5, delay: 0.1 }}>
+            <div style={{ borderTop: '1px solid var(--border)' }}>
+              {POSTS.map((post, i) => {
+                const Tag = post.live ? 'a' : 'div'
+                const linkProps = post.live
+                  ? { href: post.href, target: '_blank', rel: 'noreferrer' }
+                  : {}
 
-        {/* Placeholder Card 1 */}
-        <article className="project-card neo-panel magnetic-card" style={{ opacity: 0.7 }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '1rem', color: 'var(--text-secondary)', fontSize: '0.85rem', fontFamily: 'var(--font-code)' }}>
-            <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
-              <FaMedium /> <span>Medium</span>
+                return (
+                  <Tag
+                    key={i}
+                    className={post.live ? 'blog-row' : undefined}
+                    {...linkProps}
+                    style={{
+                      display: 'grid',
+                      gridTemplateColumns: '1fr auto',
+                      gap: '1.5rem',
+                      alignItems: 'center',
+                      padding: '1.75rem 0',
+                      borderBottom: '1px solid var(--border)',
+                      cursor: post.live ? 'pointer' : 'default',
+                      opacity: post.live ? 1 : 0.35,
+                      transition: 'padding 0.2s',
+                      textDecoration: 'none',
+                      color: 'inherit',
+                    }}
+                  >
+                    <div>
+                      <p style={{
+                        fontSize: '1rem',
+                        fontWeight: 500,
+                        color: 'var(--text-1)',
+                        marginBottom: '0.35rem',
+                        lineHeight: 1.4,
+                        transition: 'color 0.2s',
+                      }}>
+                        {post.title}
+                      </p>
+                      <p style={{
+                        fontFamily: 'var(--font-mono)',
+                        fontSize: '0.7rem',
+                        color: 'var(--text-3)',
+                        letterSpacing: '0.06em',
+                      }}>
+                        {post.date} · {post.readTime} · {post.tags.join(' · ')}
+                      </p>
+                    </div>
+                    <span style={{
+                      fontSize: '1rem',
+                      color: 'var(--text-3)',
+                      transition: 'transform 0.2s, color 0.2s',
+                    }}>
+                      {post.live ? '→' : '—'}
+                    </span>
+                  </Tag>
+                )
+              })}
             </div>
-            <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
-              <FaClock /> <span>Coming Soon</span>
-            </div>
-          </div>
-          <div style={{ flex: 1 }}>
-            <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '1.2rem', marginBottom: '1rem' }}>
-              Building Scalable SaaS Applications
-            </h3>
-            <p style={{ color: 'var(--text-secondary)', fontSize: '0.95rem', marginBottom: '1.5rem' }}>
-              A deep dive into the architecture and best practices for creating robust, scalable platforms.
-            </p>
-            <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap', marginBottom: '2rem' }}>
-              {['SaaS', 'Architecture', 'Scalability'].map(tag => (
-                <span key={tag} style={{ padding: '4px 10px', background: 'rgba(255,255,255,0.05)', borderRadius: '4px', fontSize: '0.75rem', border: '1px solid rgba(255,255,255,0.1)' }}>{tag}</span>
-              ))}
-            </div>
-          </div>
-          <div className="neo-btn secondary magnetic" style={{ pointerEvents: 'none', marginTop: 'auto', width: 'max-content', padding: '0.8rem 1.5rem' }}>
-            <span>Coming Soon</span>
-            <FaHourglassHalf />
-          </div>
-        </article>
+          </motion.div>
+
+        </motion.div>
       </div>
-
-      <div style={{ textAlign: 'center', marginTop: '5rem' }}>
-        <a href="https://medium.com/@ravkr9968" target="_blank" rel="noreferrer" className="neo-btn primary magnetic inline-flex">
-          <FaMedium />
-          <span>Follow on Medium</span>
-          <FaArrowRight />
-        </a>
-      </div>
-    </section>
+    </div>
   )
 }

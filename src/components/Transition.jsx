@@ -1,26 +1,21 @@
-import React from 'react'
 import { motion } from 'framer-motion'
+
+const variants = {
+  initial: { opacity: 0, y: 14 },
+  animate: { opacity: 1, y: 0 },
+  exit:    { opacity: 0, y: -8 },
+}
 
 export default function Transition({ children }) {
   return (
-    <>
-      <motion.div
-        className="slide-in"
-        initial={{ scaleY: 1 }}
-        animate={{ scaleY: 0 }}
-        exit={{ scaleY: 0 }}
-        transition={{ duration: 0.7, ease: [0.86, 0, 0.07, 1] }}
-      />
-      
+    <motion.div
+      variants={variants}
+      initial="initial"
+      animate="animate"
+      exit="exit"
+      transition={{ duration: 0.42, ease: [0.25, 0.46, 0.45, 0.94] }}
+    >
       {children}
-      
-      <motion.div
-        className="slide-out"
-        initial={{ scaleY: 0 }}
-        animate={{ scaleY: 0 }}
-        exit={{ scaleY: 1 }}
-        transition={{ duration: 0.5, ease: [0.86, 0, 0.07, 1] }}
-      />
-    </>
+    </motion.div>
   )
 }

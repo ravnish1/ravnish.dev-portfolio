@@ -1,234 +1,177 @@
-import React, { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
-import gsap from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import SplitType from 'split-type'
-import { FaArrowRight } from 'react-icons/fa6'
-import Terminal from '../components/Terminal'
+import { motion } from 'framer-motion'
 
-gsap.registerPlugin(ScrollTrigger)
+const fadeUp = { initial: { opacity: 0, y: 20 }, animate: { opacity: 1, y: 0 } }
+const stagger = { animate: { transition: { staggerChildren: 0.08, delayChildren: 0.04 } } }
+
+const STATS = [
+  { num: '10+', label: 'Projects'      },
+  { num: '25+', label: 'Technologies'  },
+  { num: '5+',  label: 'Certs'         },
+  { num: '5+',  label: 'Hackathons'    },
+]
+
+const TECH = [
+  'Python', 'React', 'TypeScript', 'TensorFlow',
+  'FastAPI', 'Node.js', 'PyTorch', 'Docker',
+  'PostgreSQL', 'C++', 'Next.js', 'Git',
+]
 
 export default function Home() {
-  const containerRef = useRef(null)
-
-  // Typewriter effect logic
-  const [typedText, setTypedText] = useState('')
-  const texts = [
-    "Passionate about Web Development.",
-    "Machine Learning Enthusiast.",
-    "Intelligent Robotics Systems.",
-    "Bridging creativity & logic."
-  ]
-
-  useEffect(() => {
-    let textIndex = 0
-    let charIndex = 0
-    let isDeleting = false
-    let timeoutId
-
-    function type() {
-      const currentText = texts[textIndex]
-
-      if (isDeleting) {
-        setTypedText(currentText.substring(0, charIndex - 1))
-        charIndex--
-      } else {
-        setTypedText(currentText.substring(0, charIndex + 1))
-        charIndex++
-      }
-
-      let typeSpeed = isDeleting ? 30 : 80
-
-      if (!isDeleting && charIndex === currentText.length) {
-        typeSpeed = 2000
-        isDeleting = true
-      } else if (isDeleting && charIndex === 0) {
-        isDeleting = false
-        textIndex = (textIndex + 1) % texts.length
-        typeSpeed = 500
-      }
-
-      timeoutId = setTimeout(type, typeSpeed)
-    }
-
-    type()
-    return () => clearTimeout(timeoutId)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
-
-  // Parallax and GSAP Initialization
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      const isDesktop = window.innerWidth > 1024
-
-      // Request 2: Text Reveal on Scroll - Split Character Animation
-      const kineticTexts = document.querySelectorAll('.kinetic-text')
-      if (kineticTexts.length > 0) {
-        const splitText = new SplitType('.kinetic-text', { types: 'chars' })
-
-        gsap.from(splitText.chars, {
-          y: 80,
-          opacity: 0,
-          duration: 1,
-          stagger: 0.03,
-          ease: "power4.out",
-          scrollTrigger: {
-            trigger: '.hero-section',
-            start: 'top 80%',
-          }
-        })
-      }
-
-      // Rest of hero intro animation
-      const tl = gsap.timeline()
-      tl.from('.neo-panel-anim', { x: -50, opacity: 0, duration: 0.8, ease: "power3.out", delay: 0.5 })
-        .from('.stat-item', { y: 30, opacity: 0, stagger: 0.1, duration: 0.6, ease: "power2.out" }, "-=0.4")
-        .from('.cta-btn', { y: 20, opacity: 0, stagger: 0.1, duration: 0.5 }, "-=0.2")
-        .from('.terminal-container', { opacity: 0, scale: 0.95, rotationY: 15, duration: 1, ease: "expo.out" }, "-=1")
-
-      // Request 5: Animated Counter Numbers
-      gsap.utils.toArray('.stat-number').forEach(el => {
-        const target = parseInt(el.getAttribute('data-target'))
-        if (target) {
-          ScrollTrigger.create({
-            trigger: el,
-            start: "top 90%",
-            once: true,
-            onEnter: () => {
-              const counter = { val: 0 }
-              gsap.to(counter, {
-                val: target,
-                duration: 1.5,
-                ease: "power2.out",
-                onUpdate: () => {
-                  el.innerText = Math.ceil(counter.val) + "+"
-                }
-              })
-            }
-          })
-        }
-      })
-
-      // Request 4: Pinned Hero Section with Scroll-Linked Fade
-      if (isDesktop) {
-        ScrollTrigger.create({
-          trigger: '.hero-section',
-          start: 'top top',
-          end: 'bottom center',
-          pin: true,
-          pinSpacing: false,
-          scrub: 1,
-          animation: gsap.to('.hero-content, .terminal-container', {
-            opacity: 0,
-            scale: 0.96,
-            ease: "none"
-          })
-        })
-      }
-
-      // Request 6: Magnetic Hover Engine (applied universally with quickTo to elements with .magnetic)
-      const magnetics = document.querySelectorAll('.magnetic')
-      magnetics.forEach((el) => {
-        const xTo = gsap.quickTo(el, "x", { duration: 1, ease: "elastic.out(1, 0.4)" })
-        const yTo = gsap.quickTo(el, "y", { duration: 1, ease: "elastic.out(1, 0.4)" })
-
-        el.addEventListener("mousemove", (e) => {
-          const { clientX, clientY } = e
-          const { height, width, left, top } = el.getBoundingClientRect()
-          const x = (clientX - (left + width / 2)) * 0.4 // Max offset control
-          const y = (clientY - (top + height / 2)) * 0.4
-          xTo(x)
-          yTo(y)
-        })
-
-        el.addEventListener("mouseleave", () => {
-          xTo(0)
-          yTo(0)
-        })
-      })
-
-      // Floating elements parallax on mouse move
-      if (isDesktop) {
-        const xTo1 = gsap.quickTo('.hero-content', 'x', { duration: 1, ease: 'power2.out' })
-        const yTo1 = gsap.quickTo('.hero-content', 'y', { duration: 1, ease: 'power2.out' })
-        
-        const xTo2 = gsap.quickTo('.terminal-container .terminal', 'x', { duration: 1.5, ease: 'power2.out' })
-        const yTo2 = gsap.quickTo('.terminal-container .terminal', 'y', { duration: 1.5, ease: 'power2.out' })
-        const rYTo2 = gsap.quickTo('.terminal-container .terminal', 'rotationY', { duration: 1.5, ease: 'power2.out' })
-        const rXTo2 = gsap.quickTo('.terminal-container .terminal', 'rotationX', { duration: 1.5, ease: 'power2.out' })
-
-        const handleMouseMove = (e) => {
-          const x = (e.clientX / window.innerWidth - 0.5) * 20
-          const y = (e.clientY / window.innerHeight - 0.5) * 20
-          
-          xTo1(x * -1)
-          yTo1(y * -1)
-          xTo2(x * 1.5)
-          yTo2(y * 1.5)
-          rYTo2(x * 0.5 - 5)
-          rXTo2(y * -0.5 + 5)
-        }
-        
-        document.addEventListener("mousemove", handleMouseMove)
-        return () => document.removeEventListener("mousemove", handleMouseMove)
-      }
-    }, containerRef)
-
-    return () => ctx.revert()
-  }, [])
-
   return (
-    <div className="home-wrapper" ref={containerRef}>
-      <section className="hero-section">
-        <div className="hero-content">
-          <div className="name-container">
-            <h1 className="kinetic-text">RAVNISH</h1>
-            <h1 className="kinetic-text outline-text">KUMAR</h1>
+    /* ── Single viewport, vertically centered ─────────────────── */
+    <div
+      className="page-wrapper"
+      style={{
+        minHeight: 'calc(100vh - 64px)',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+      }}
+    >
+      <div className="container">
+        <motion.div
+          variants={stagger}
+          initial="initial"
+          animate="animate"
+          style={{
+            display: 'grid',
+            gridTemplateColumns: '1fr 1fr',
+            gap: '5rem',
+            alignItems: 'center',
+          }}
+        >
+
+          {/* ── LEFT — identity + CTA ────────────────────────── */}
+          <div>
+            <motion.p
+              className="hero-eyebrow"
+              variants={fadeUp}
+              transition={{ duration: 0.45 }}
+              style={{ marginBottom: '1.5rem' }}
+            >
+              Ravnish Kumar &nbsp;·&nbsp; New Delhi, India
+            </motion.p>
+
+            <motion.h1
+              variants={fadeUp}
+              transition={{ duration: 0.55 }}
+              style={{
+                fontSize: 'clamp(3.5rem, 6.5vw, 6.5rem)',
+                fontWeight: 800,
+                lineHeight: 0.9,
+                letterSpacing: '-0.035em',
+                color: 'var(--text-1)',
+                marginBottom: '2rem',
+              }}
+            >
+              I BUILD<br />
+              <span style={{ color: 'var(--text-2)' }}>SYSTEMS.</span>
+            </motion.h1>
+
+            <motion.p
+              className="hero-desc"
+              variants={fadeUp}
+              transition={{ duration: 0.5 }}
+              style={{ marginBottom: '2.5rem', maxWidth: '420px' }}
+            >
+              ML + Software + Robotics Engineer. Building intelligent
+              systems at the intersection of machine learning and
+              high-performance software.
+            </motion.p>
+
+            <motion.div
+              className="hero-actions"
+              variants={fadeUp}
+              transition={{ duration: 0.45 }}
+            >
+              <Link to="/projects" className="btn btn-primary">View Projects →</Link>
+              <Link to="/contactme" className="btn btn-ghost">Get in Touch</Link>
+            </motion.div>
           </div>
 
-          <div className="role-container neo-panel neo-panel-anim">
-            <h2 className="typewriter-text">
-              <span className="typed-text">{typedText}</span>
-              <span className="cursor">|</span>
-            </h2>
-            <p className="quote">Engineering the future. One line of code at a time.</p>
-          </div>
-
-          <div className="tech-stats">
-            <div className="stat-item glass-panel magnetic cursor-pointer hover:cursor-none">
-              <div className="stat-number" data-target="10">0+</div>
-              <div className="stat-label">Projects</div>
+          {/* ── RIGHT — stats + tech ──────────────────────────── */}
+          <motion.div
+            variants={fadeUp}
+            transition={{ duration: 0.55, delay: 0.1 }}
+            style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}
+          >
+            {/* 2×2 stat grid */}
+            <div
+              style={{
+                display: 'grid',
+                gridTemplateColumns: '1fr 1fr',
+                gap: '0',
+                border: '1px solid var(--border)',
+              }}
+            >
+              {STATS.map((s, i) => (
+                <div
+                  key={s.label}
+                  style={{
+                    padding: '1.5rem',
+                    borderRight:  i % 2 === 0    ? '1px solid var(--border)' : 'none',
+                    borderBottom: i < 2           ? '1px solid var(--border)' : 'none',
+                  }}
+                >
+                  <div style={{
+                    fontSize: '2.75rem',
+                    fontWeight: 700,
+                    letterSpacing: '-0.04em',
+                    color: 'var(--text-1)',
+                    lineHeight: 1,
+                    marginBottom: '0.35rem',
+                  }}>
+                    {s.num}
+                  </div>
+                  <div style={{
+                    fontFamily: 'var(--font-mono)',
+                    fontSize: '0.68rem',
+                    letterSpacing: '0.1em',
+                    textTransform: 'uppercase',
+                    color: 'var(--text-2)',
+                  }}>
+                    {s.label}
+                  </div>
+                </div>
+              ))}
             </div>
-            <div className="stat-item glass-panel magnetic cursor-pointer hover:cursor-none">
-              <div className="stat-number" data-target="25">0+</div>
-              <div className="stat-label">Technologies</div>
-            </div>
-            <div className="stat-item glass-panel magnetic cursor-pointer hover:cursor-none">
-              <div className="stat-number" data-target="5">0+</div>
-              <div className="stat-label">Certifications</div>
-            </div>
-            <div className="stat-item glass-panel magnetic cursor-pointer hover:cursor-none">
-              <div className="stat-number" data-target="5">0+</div>
-              <div className="stat-label">Hackathon Wins</div>
-            </div>
-          </div>
 
-          <div className="cta-buttons">
-            <Link to="/projects" className="cta-btn neo-btn primary magnetic">
-              <span>View Projects</span>
-              <FaArrowRight />
-            </Link>
-            <a href="/legacy/contactme/" className="cta-btn neo-btn secondary magnetic">
-              <span>Contact Me</span>
-            </a>
-          </div>
-        </div>
+            {/* Tech pills */}
+            <div>
+              <p style={{
+                fontFamily: 'var(--font-mono)',
+                fontSize: '0.66rem',
+                letterSpacing: '0.18em',
+                textTransform: 'uppercase',
+                color: 'var(--text-3)',
+                marginBottom: '0.9rem',
+              }}>
+                Tech Stack
+              </p>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.4rem' }}>
+                {TECH.map((t) => (
+                  <span
+                    key={t}
+                    style={{
+                      fontFamily: 'var(--font-mono)',
+                      fontSize: '0.7rem',
+                      color: 'var(--text-2)',
+                      padding: '0.3rem 0.65rem',
+                      border: '1px solid var(--border)',
+                      borderRadius: '2px',
+                      letterSpacing: '0.04em',
+                    }}
+                  >
+                    {t}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </motion.div>
 
-        <div className="terminal-container floating">
-          <Terminal />
-        </div>
-      </section>
-
+        </motion.div>
+      </div>
     </div>
   )
 }
