@@ -4,50 +4,42 @@ import { FaGithub } from 'react-icons/fa'
 const PROJECTS = [
   {
     index: '01',
-    title: 'Project Orion',
-    desc:  'Next-gen ML pipeline. Real-time inference with sub-50ms latency at production volume.',
-    tags:  ['Python', 'FastAPI', 'Docker', 'TensorFlow'],
-    href:  'https://github.com/ravnish1',
+    title: 'Log Classification Engine',
+    desc: 'Next-gen ML pipeline. Real-time inference with sub-50ms latency at production volume.',
+    tags: ['Python', 'FastAPI', 'Docker', 'TensorFlow'],
+    href: 'https://github.com/ravnish1',
   },
   {
     index: '02',
     title: 'Aether Web',
-    desc:  'High-performance React app leveraging edge functions for zero-latency global delivery.',
-    tags:  ['React', 'TypeScript', 'Edge Functions'],
-    href:  'https://github.com/ravnish1',
+    desc: 'High-performance React app leveraging edge functions for zero-latency global delivery.',
+    tags: ['React', 'TypeScript', 'Edge Functions'],
+    href: 'https://github.com/ravnish1',
   },
   {
     index: '03',
     title: 'RoboSync API',
-    desc:  'Real-time IoT sync protocol for embedded systems with sub-ms control loops over MQTT.',
-    tags:  ['C++', 'ROS2', 'Python', 'MQTT'],
-    href:  'https://github.com/ravnish1',
+    desc: 'Real-time IoT sync protocol for embedded systems with sub-ms control loops over MQTT.',
+    tags: ['C++', 'ROS2', 'Python', 'MQTT'],
+    href: 'https://github.com/ravnish1',
   },
   {
     index: '04',
     title: 'Quantum UI',
-    desc:  'Brutalist component library for next-gen web apps. Zero-dependency, tree-shakeable.',
-    tags:  ['React', 'TypeScript', 'CSS'],
-    href:  'https://github.com/ravnish1',
+    desc: 'Brutalist component library for next-gen web apps. Zero-dependency, tree-shakeable.',
+    tags: ['React', 'TypeScript', 'CSS'],
+    href: 'https://github.com/ravnish1',
   },
 ]
 
 const cardV = {
-  hidden:  { opacity: 0, y: 16 },
-  visible: { opacity: 1, y: 0  },
+  hidden: { opacity: 0, y: 16 },
+  visible: { opacity: 1, y: 0 },
 }
 
 export default function Projects() {
   return (
-    <div
-      className="page-wrapper"
-      style={{
-        minHeight: 'calc(100vh - 64px)',
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-      }}
-    >
+    <div className="page-wrapper page-viewport">
       <div className="container">
 
         {/* ── Compact header row ─────────────────────────────── */}
@@ -55,12 +47,7 @@ export default function Projects() {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.45 }}
-          style={{
-            display: 'flex',
-            alignItems: 'baseline',
-            justifyContent: 'space-between',
-            marginBottom: '1.75rem',
-          }}
+          className="projects-header-row"
         >
           <div>
             <p className="section-label" style={{ marginBottom: '0.4rem' }}>Selected Work</p>
@@ -86,13 +73,7 @@ export default function Projects() {
 
         {/* ── 2×2 card grid ──────────────────────────────────── */}
         <motion.div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: '1fr 1fr',
-            border: '1px solid var(--border)',
-            gap: '1px',
-            background: 'var(--border)',
-          }}
+          className="projects-grid"
           initial="hidden"
           animate="visible"
           variants={{ visible: { transition: { staggerChildren: 0.07 } } }}

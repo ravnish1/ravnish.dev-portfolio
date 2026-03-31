@@ -11,26 +11,13 @@ const SOCIALS = [
 export default function Contact() {
   return (
     /* Full viewport height minus navbar — no scrolling needed */
-    <div
-      className="page-wrapper"
-      style={{
-        minHeight: 'calc(100vh - 64px)',
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-      }}
-    >
+    <div className="page-wrapper page-viewport">
       <div className="container">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.55 }}
-          style={{
-            display: 'grid',
-            gridTemplateColumns: '1fr 1fr',
-            gap: '6rem',
-            alignItems: 'center',
-          }}
+          className="contact-layout"
         >
           {/* ── Left — heading ─────────────────────────────── */}
           <div>

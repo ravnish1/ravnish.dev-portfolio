@@ -12,34 +12,23 @@ const STATS = [
 ]
 
 const TECH = [
-  'Python', 'React', 'TypeScript', 'TensorFlow',
-  'FastAPI', 'Node.js', 'PyTorch', 'Docker',
-  'PostgreSQL', 'C++', 'Next.js', 'Git',
+  'Python', 'C++', 'TypeScript', 'React',
+  'Next.js', 'Node.js', 'FastAPI', 'PostgreSQL', 
+  'MySQL', 'Supabase', 'Firebase', 'TensorFlow', 
+  'PyTorch', 'Embedded Systems', 'IoT & Robotics', 
+  'UAV Engineering', 'Docker', 'Postman', 'Git'
 ]
 
 export default function Home() {
   return (
     /* ── Single viewport, vertically centered ─────────────────── */
-    <div
-      className="page-wrapper"
-      style={{
-        minHeight: 'calc(100vh - 64px)',
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-      }}
-    >
+    <div className="page-wrapper page-viewport">
       <div className="container">
         <motion.div
           variants={stagger}
           initial="initial"
           animate="animate"
-          style={{
-            display: 'grid',
-            gridTemplateColumns: '1fr 1fr',
-            gap: '5rem',
-            alignItems: 'center',
-          }}
+          className="home-layout"
         >
 
           {/* ── LEFT — identity + CTA ────────────────────────── */}
@@ -50,7 +39,7 @@ export default function Home() {
               transition={{ duration: 0.45 }}
               style={{ marginBottom: '1.5rem' }}
             >
-              Ravnish Kumar &nbsp;·&nbsp; New Delhi, India
+              Building What Matters &nbsp;·&nbsp; Open to Opportunities
             </motion.p>
 
             <motion.h1
@@ -98,14 +87,7 @@ export default function Home() {
             style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}
           >
             {/* 2×2 stat grid */}
-            <div
-              style={{
-                display: 'grid',
-                gridTemplateColumns: '1fr 1fr',
-                gap: '0',
-                border: '1px solid var(--border)',
-              }}
-            >
+            <div className="stats-grid">
               {STATS.map((s, i) => (
                 <div
                   key={s.label}
@@ -142,11 +124,12 @@ export default function Home() {
             <div>
               <p style={{
                 fontFamily: 'var(--font-mono)',
-                fontSize: '0.66rem',
-                letterSpacing: '0.18em',
+                fontSize: '0.75rem',
+                fontWeight: 600,
+                letterSpacing: '0.12em',
                 textTransform: 'uppercase',
-                color: 'var(--text-3)',
-                marginBottom: '0.9rem',
+                color: 'var(--text-1)',
+                marginBottom: '1.2rem',
               }}>
                 Tech Stack
               </p>
@@ -156,12 +139,12 @@ export default function Home() {
                     key={t}
                     style={{
                       fontFamily: 'var(--font-mono)',
-                      fontSize: '0.7rem',
-                      color: 'var(--text-2)',
-                      padding: '0.3rem 0.65rem',
-                      border: '1px solid var(--border)',
-                      borderRadius: '2px',
-                      letterSpacing: '0.04em',
+                      fontSize: '0.78rem',
+                      color: 'var(--text-1)',
+                      backgroundColor: 'rgba(255,255,255,0.06)',
+                      padding: '0.35rem 0.9rem',
+                      border: '1px solid rgba(255,255,255,0.12)',
+                      borderRadius: '100px', // Visible oval pill shape
                     }}
                   >
                     {t}

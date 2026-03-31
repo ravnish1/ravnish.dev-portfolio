@@ -24,26 +24,13 @@ const fadeUp  = { initial: { opacity: 0, y: 14 }, animate: { opacity: 1, y: 0 } 
 
 export default function Blogs() {
   return (
-    <div
-      className="page-wrapper"
-      style={{
-        minHeight: 'calc(100vh - 64px)',
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-      }}
-    >
+    <div className="page-wrapper page-viewport">
       <div className="container">
         <motion.div
           variants={stagger}
           initial="initial"
           animate="animate"
-          style={{
-            display: 'grid',
-            gridTemplateColumns: '1fr 2fr',
-            gap: '6rem',
-            alignItems: 'center',
-          }}
+          className="blog-layout"
         >
 
           {/* ── LEFT — heading ────────────────────────────────── */}
