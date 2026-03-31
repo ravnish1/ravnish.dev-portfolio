@@ -5,10 +5,10 @@ const fadeUp = { initial: { opacity: 0, y: 20 }, animate: { opacity: 1, y: 0 } }
 const stagger = { animate: { transition: { staggerChildren: 0.08, delayChildren: 0.04 } } }
 
 const STATS = [
-  { num: '10+', label: 'Projects'      },
-  { num: '25+', label: 'Technologies'  },
-  { num: '5+',  label: 'Certs'         },
-  { num: '5+',  label: 'Hackathons'    },
+  { num: '10+', label: 'Projects' },
+  { num: '25+', label: 'Technologies' },
+  { num: '5+', label: 'Certs' },
+  { num: '5+', label: 'Hackathons' },
 ]
 
 const TECH = [
@@ -75,8 +75,9 @@ export default function Home() {
               transition={{ duration: 0.5 }}
               style={{ marginBottom: '2.5rem', maxWidth: '420px' }}
             >
-              ML + Software + Robotics Engineer. Building intelligent
-              systems at the intersection of machine learning and
+              ML + Software + Robotics Engineer.
+              <br />
+              Building intelligent systems at the intersection of machine learning and
               high-performance software.
             </motion.p>
 
@@ -110,8 +111,8 @@ export default function Home() {
                   key={s.label}
                   style={{
                     padding: '1.5rem',
-                    borderRight:  i % 2 === 0    ? '1px solid var(--border)' : 'none',
-                    borderBottom: i < 2           ? '1px solid var(--border)' : 'none',
+                    borderRight: i % 2 === 0 ? '1px solid var(--border)' : 'none',
+                    borderBottom: i < 2 ? '1px solid var(--border)' : 'none',
                   }}
                 >
                   <div style={{
