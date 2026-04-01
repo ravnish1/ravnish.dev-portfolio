@@ -16,7 +16,7 @@ const TECH = [
   'Next.js', 'Node.js', 'FastAPI', 'PostgreSQL', 
   'MySQL', 'Supabase', 'Firebase', 'TensorFlow', 
   'PyTorch', 'Embedded Systems', 'IoT & Robotics', 
-  'UAV Engineering', 'Docker', 'Postman', 'Git'
+  'Docker', 'Postman', 'Git'
 ]
 
 export default function Home() {

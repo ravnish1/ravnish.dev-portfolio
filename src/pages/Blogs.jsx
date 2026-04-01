@@ -2,25 +2,25 @@ import { motion } from 'framer-motion'
 
 const POSTS = [
   {
-    title:    'Harnessing the Power of AI: Why Some Thrive While Others Decline',
-    date:     '2024',
+    title: 'Harnessing the Power of AI: Why Some Thrive While Others Decline',
+    date: '2024',
     readTime: '5 min read',
-    tags:     ['AI', 'Technology', 'Innovation'],
-    href:     'https://medium.com/@ravkr9968/harnessing-the-power-of-ai-why-some-thrive-while-others-decline-bed3c4364bf4',
-    live:     true,
+    tags: ['AI', 'Technology', 'Innovation'],
+    href: 'https://medium.com/@ravkr9968/harnessing-the-power-of-ai-why-some-thrive-while-others-decline-bed3c4364bf4',
+    live: true,
   },
   {
-    title:    'Building Scalable SaaS Applications',
-    date:     'Coming Soon',
-    readTime: '—',
-    tags:     ['SaaS', 'Architecture', 'Scalability'],
-    href:     null,
-    live:     false,
+    title: 'Understanding the Recent Claude Code Source Code Leak: A Technical Analysis',
+    date: '2026',
+    readTime: '2 min read',
+    tags: ['AI', 'Technology', 'Security'],
+    href: 'https://medium.com/@ravkr9968/understanding-the-recent-claude-code-source-code-leak-a-technical-analysis-3a9f07b41f88',
+    live: true,
   },
 ]
 
 const stagger = { animate: { transition: { staggerChildren: 0.09 } } }
-const fadeUp  = { initial: { opacity: 0, y: 14 }, animate: { opacity: 1, y: 0 } }
+const fadeUp = { initial: { opacity: 0, y: 14 }, animate: { opacity: 1, y: 0 } }
 
 export default function Blogs() {
   return (
