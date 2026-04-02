@@ -12,10 +12,13 @@
   --bg-card: rgba(255, 255, 255, 0.025);
   --border: rgba(255, 255, 255, 0.07);
   --border-hover: rgba(255, 255, 255, 0.18);
-  --text-1: #e2e8f0;   /* Slate 200 - soft reading white, zero screen glare */
-  --text-2: #94a3b8;   /* Slate 400 - clean secondary gray */
-  --text-3: #64748b;   /* Slate 500 - elegant tertiary details */
-  --accent: #c8f135;   
+  --text-1: #e2e8f0;
+  /* Slate 200 - soft reading white, zero screen glare */
+  --text-2: #94a3b8;
+  /* Slate 400 - clean secondary gray */
+  --text-3: #64748b;
+  /* Slate 500 - elegant tertiary details */
+  --accent: #c8f135;
 
   /* Typography */
   --font-sans: 'Outfit', system-ui, -apple-system, sans-serif;
@@ -103,6 +106,15 @@ button {
   padding: 4rem 0;
 }
 
+/* Projects: locked to single viewport, no scroll */
+.projects-viewport {
+  height: calc(100vh - 64px);
+  display: flex;
+  flex-direction: column;
+  padding: 2rem 0;
+  overflow: hidden;
+}
+
 .home-layout {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -120,7 +132,8 @@ button {
   display: flex;
   align-items: baseline;
   justify-content: space-between;
-  margin-bottom: 1.75rem;
+  margin-bottom: 1rem;
+  flex-shrink: 0;
 }
 
 .blog-layout {
@@ -459,10 +472,12 @@ button {
 .projects-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: 1fr 1fr;
   border: 1px solid var(--border);
   gap: 1px;
   background: var(--border);
-  /* border fills the gap */
+  flex: 1;
+  min-height: 0;
 }
 
 .project-card {
@@ -697,10 +712,17 @@ button {
     grid-template-columns: 1fr;
   }
 
+  /* On tablet, projects can't fit single viewport in 1-col, allow scroll */
+  .projects-viewport {
+    height: auto;
+    overflow: visible;
+    padding: 6rem 0 2.5rem;
+  }
+
   /* Additional single-viewport responsive fixes */
   .page-viewport {
     min-height: auto;
-    padding: 6rem 0 2.5rem; 
+    padding: 6rem 0 2.5rem;
   }
 
   .home-layout {
@@ -735,7 +757,12 @@ button {
   }
 
   .page-viewport {
-    padding-top: 160px; /* Account for the tall stacked mobile navbar */
+    padding-top: 160px;
+    /* Account for the tall stacked mobile navbar */
+  }
+
+  .projects-viewport {
+    padding-top: 160px;
   }
 
   /* Fixed Mobile Navbar */

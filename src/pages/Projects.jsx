@@ -39,8 +39,8 @@ const cardV = {
 
 export default function Projects() {
   return (
-    <div className="page-wrapper page-viewport">
-      <div className="container">
+    <div className="page-wrapper projects-viewport">
+      <div className="container" style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
 
         {/* ── Compact header row ─────────────────────────────── */}
         <motion.div
@@ -84,13 +84,14 @@ export default function Projects() {
               variants={cardV}
               transition={{ duration: 0.42, ease: [0.25, 0.46, 0.45, 0.94] }}
               style={{
-                padding: '1.75rem',
+                padding: '1.25rem 1.5rem',
                 background: 'var(--bg)',
                 display: 'flex',
                 flexDirection: 'column',
-                gap: '0.6rem',
+                gap: '0.4rem',
                 transition: 'background 0.2s',
                 cursor: 'default',
+                overflow: 'hidden',
               }}
               whileHover={{ backgroundColor: 'rgba(255,255,255,0.03)' }}
             >
