@@ -3,7 +3,7 @@ import { motion } from 'framer-motion'
 const POSTS = [
   {
     title: 'Harnessing the Power of AI: Why Some Thrive While Others Decline',
-    date: '2024',
+    date: '2025',
     readTime: '5 min read',
     tags: ['AI', 'Technology', 'Innovation'],
     href: 'https://medium.com/@ravkr9968/harnessing-the-power-of-ai-why-some-thrive-while-others-decline-bed3c4364bf4',
