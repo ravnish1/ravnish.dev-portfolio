@@ -65,7 +65,7 @@ export default function Projects() {
             target="_blank"
             rel="noreferrer"
             className="btn btn-ghost"
-            style={{ fontSize: '0.78rem', padding: '0.8rem 1.4rem', marginTop: '1rem' }}
+            style={{ fontSize: '0.78rem', padding: '0.8rem 1.4rem', marginTop: '1rem', transform: 'translateY(1.5cm)' }}
           >
             View All on GitHub →
           </a>
