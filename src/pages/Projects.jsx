@@ -61,11 +61,11 @@ export default function Projects() {
             </h1>
           </div>
           <a
-            href="https://github.com/ravnish1"
+            href="https://github.com/ravnish1?tab=repositories"
             target="_blank"
             rel="noreferrer"
             className="btn btn-ghost"
-            style={{ fontSize: '0.78rem', padding: '0.6rem 1.2rem' }}
+            style={{ fontSize: '0.78rem', padding: '0.8rem 1.4rem', marginTop: '1rem' }}
           >
             View All on GitHub →
           </a>
