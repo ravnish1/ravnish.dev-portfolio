@@ -13,9 +13,9 @@ const STATS = [
 
 const TECH = [
   'Python', 'C++', 'TypeScript', 'React',
-  'Next.js', 'Node.js', 'FastAPI', 'PostgreSQL', 
-  'MySQL', 'Supabase', 'Firebase', 'TensorFlow', 
-  'PyTorch', 'Embedded Systems', 'IoT & Robotics', 
+  'Next.js', 'Node.js', 'FastAPI', 'PostgreSQL',
+  'MySQL', 'Supabase', 'Firebase', 'TensorFlow',
+  'PyTorch', 'Embedded Systems', 'IoT & Robotics',
   'Docker', 'Postman', 'Git'
 ]
 
@@ -46,17 +46,29 @@ export default function Home() {
               variants={fadeUp}
               transition={{ duration: 0.55 }}
               style={{
-                fontSize: 'clamp(3.5rem, 6.5vw, 6.5rem)',
+                fontSize: 'clamp(4.5rem, 8vw, 8rem)',
                 fontWeight: 800,
                 lineHeight: 0.9,
                 letterSpacing: '-0.035em',
                 color: 'var(--text-1)',
-                marginBottom: '2rem',
+                marginBottom: '1rem',
               }}
             >
-              I BUILD<br />
-              <span style={{ color: 'var(--text-2)' }}>SYSTEMS.</span>
+              I BUILD
             </motion.h1>
+
+            <motion.div
+              variants={fadeUp}
+              transition={{ duration: 0.55, delay: 0.1 }}
+              className="glitch-wrapper"
+            >
+              <span
+                className="glitch-text"
+                data-text="I can do whatever you need, as long as I'm learning something or getting paid well enough for my time — preferably both."
+              >
+                I can do whatever you need, as long as I'm learning something or getting paid well enough for my time, preferably both.
+              </span>
+            </motion.div>
 
             <motion.p
               className="hero-desc"
@@ -64,10 +76,6 @@ export default function Home() {
               transition={{ duration: 0.5 }}
               style={{ marginBottom: '2.5rem', maxWidth: '420px' }}
             >
-              ML + Software + Robotics Engineer.
-              <br />
-              Building intelligent systems at the intersection of machine learning and
-              high-performance software.
             </motion.p>
 
             <motion.div
