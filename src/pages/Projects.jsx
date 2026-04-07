@@ -13,8 +13,12 @@ const PROJECTS = [
     index: '02',
     title: 'EquiLens AI',
     desc: 'An AI-powered platform for real-time subtle bias detection from workplace communication and meeting transcripts.',
-    tags: ['Python', 'TensorFlow', 'FastAPI', 'AI'],
-    href: 'https://github.com/ravnish1/frontend-equilens-ai',
+    tags: [
+      'DistilBERT/BERT', 'scikit-learn', 'SHAP/LIME',
+      'Kafka+Spark', 'MongoDB+HDFS', 'FastAPI+Uvicorn',
+      'Streamlit', 'Docker Compose'
+    ],
+    href: 'https://github.com/ravnish1/equilens-ai',
   },
   {
     index: '03',
@@ -125,21 +129,21 @@ export default function Projects() {
               {/* Footer */}
               <div style={{
                 display: 'flex',
-                alignItems: 'center',
+                alignItems: 'flex-start',
                 justifyContent: 'space-between',
                 paddingTop: '0.75rem',
                 borderTop: '1px solid var(--border)',
                 marginTop: '0.25rem',
               }}>
-                <div style={{ display: 'flex', gap: '0.4rem', flexWrap: 'wrap' }}>
-                  {p.tags.map((t) => (
+                <div style={{ display: 'flex', flexWrap: 'wrap', rowGap: '0.3rem', columnGap: '0.4rem', flex: 1, paddingRight: '1rem' }}>
+                  {p.tags.map((t, i) => (
                     <span key={t} style={{
                       fontFamily: 'var(--font-mono)',
                       fontSize: '0.62rem',
                       color: 'var(--text-3)',
                       letterSpacing: '0.05em',
                     }}>
-                      {t}
+                      {t}{i < p.tags.length - 1 ? <span style={{ opacity: 0.5, margin: '0 0.1rem' }}>·</span> : ''}
                     </span>
                   ))}
                 </div>
