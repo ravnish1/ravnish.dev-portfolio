@@ -12,11 +12,10 @@ const STATS = [
 ]
 
 const TECH = [
-  'Python', 'C++', 'TypeScript', 'React',
-  'Next.js', 'Node.js', 'FastAPI', 'PostgreSQL',
-  'MySQL', 'Supabase', 'Firebase', 'TensorFlow',
-  'PyTorch', 'Embedded Systems', 'IoT & Robotics',
-  'Docker', 'Postman', 'Git'
+  'Python', 'C++', 'Javascript', 'React',
+  'Next.js', 'FastAPI', 'MongoDB', 'PostgreSQL',
+  'MySQL', 'Firebase', 'Supabase', 'Neo4j', 'scikit-learn',
+  'n8n', 'Claude Code', 'Ollama', 'IoT & Robotics', 'Drone Assembly'
 ]
 
 export default function Home() {
@@ -139,7 +138,7 @@ export default function Home() {
                 color: 'var(--text-1)',
                 marginBottom: '1.2rem',
               }}>
-                Tech Stack
+                Hands-on Experience with
               </p>
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.4rem' }}>
                 {TECH.map((t) => (
