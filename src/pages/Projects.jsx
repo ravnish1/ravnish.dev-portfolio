@@ -54,7 +54,6 @@ export default function Projects() {
           className="projects-header-row"
         >
           <div>
-            <p className="section-label" style={{ marginBottom: '0.4rem' }}>Selected Work</p>
             <h1 style={{
               fontSize: 'clamp(1.8rem, 3vw, 2.5rem)',
               fontWeight: 700,
@@ -69,7 +68,7 @@ export default function Projects() {
             target="_blank"
             rel="noreferrer"
             className="btn btn-ghost"
-            style={{ fontSize: '0.78rem', padding: '0.8rem 1.4rem', marginTop: '1rem', transform: 'translateY(1.5cm)' }}
+            style={{ fontSize: '0.78rem', padding: '0.8rem 1.4rem' }}
           >
             View All on GitHub →
           </a>
