@@ -13,9 +13,9 @@ const STATS = [
 
 const TECH = [
   'Python', 'C++', 'Javascript', 'React',
-  'Next.js', 'FastAPI', 'MongoDB', 'PostgreSQL',
+  'FastAPI', 'MongoDB', 'PostgreSQL',
   'MySQL', 'Firebase', 'Supabase', 'Neo4j', 'scikit-learn',
-  'n8n', 'Claude Code', 'Ollama', 'IoT & Robotics', 'Drone Assembly'
+  'n8n', 'Claude Code', 'IoT & Robotics'
 ]
 
 export default function Home() {
