@@ -10,6 +10,8 @@ import Projects from './pages/Projects'
 import Contact from './pages/Contact'
 import Blogs from './pages/Blogs'
 
+import { SpeedInsights } from '@vercel/speed-insights/react'
+
 function App() {
   const location = useLocation()
 
@@ -29,6 +31,7 @@ function App() {
           <Route path="*"          element={<Transition><Home /></Transition>} />
         </Routes>
       </AnimatePresence>
+      <SpeedInsights />
     </>
   )
 }
