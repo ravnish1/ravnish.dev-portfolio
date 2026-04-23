@@ -16,6 +16,7 @@ import FreelanceOffer from './pages/FreelanceOffer'
 
 import { I18nProvider } from './i18n/I18nContext'
 import { SpeedInsights } from '@vercel/speed-insights/react'
+import { Analytics } from '@vercel/analytics/react'
 
 function App() {
   const location = useLocation()
@@ -41,6 +42,7 @@ function App() {
         </Routes>
       </AnimatePresence>
       <SpeedInsights />
+      <Analytics />
     </I18nProvider>
   )
 }
