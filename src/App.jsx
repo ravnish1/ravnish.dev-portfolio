@@ -10,6 +10,7 @@ import Projects from './pages/Projects'
 import Contact from './pages/Contact'
 import Blogs from './pages/Blogs'
 
+import { I18nProvider } from './i18n/I18nContext'
 import { SpeedInsights } from '@vercel/speed-insights/react'
 
 function App() {
@@ -19,7 +20,7 @@ function App() {
   useEffect(() => { window.scrollTo(0, 0) }, [location.pathname])
 
   return (
-    <>
+    <I18nProvider>
       <Background />
       <Navbar />
       <AnimatePresence mode="wait">
@@ -32,7 +33,7 @@ function App() {
         </Routes>
       </AnimatePresence>
       <SpeedInsights />
-    </>
+    </I18nProvider>
   )
 }
 

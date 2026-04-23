@@ -1,22 +1,25 @@
 import { useState, useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
-
-const NAV_LINKS = [
-  { label: 'Home',     to: '/',          exact: true  },
-  { label: 'Projects', to: '/projects',  exact: false },
-  { label: 'Blog',     to: '/blogs',     exact: false },
-  { label: 'Contact',  to: '/contactme', exact: false },
-]
+import { useI18n } from '../i18n/I18nContext'
+import LanguageSwitcher from './LanguageSwitcher'
 
 export default function Navbar() {
   const location = useLocation()
   const [scrolled, setScrolled] = useState(false)
+  const { t } = useI18n()
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40)
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
+
+  const NAV_LINKS = [
+    { label: t('nav.home'),     to: '/',          exact: true  },
+    { label: t('nav.projects'), to: '/projects',  exact: false },
+    { label: t('nav.blog'),     to: '/blogs',     exact: false },
+    { label: t('nav.contact'),  to: '/contactme', exact: false },
+  ]
 
   const isActive = ({ to, exact }) =>
     exact ? location.pathname === to : location.pathname.startsWith(to)
@@ -48,8 +51,9 @@ export default function Navbar() {
             rel="noreferrer"
             className="nav-resume"
           >
-            Resume
+            {t('nav.resume')}
           </a>
+          <LanguageSwitcher />
         </div>
       </div>
     </nav>

@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
 import { FaGithub, FaLinkedin, FaMedium } from 'react-icons/fa'
+import { useI18n } from '../i18n/I18nContext'
 
 const SOCIALS = [
   { label: 'GitHub',          icon: <FaGithub />,  href: 'https://github.com/ravnish1' },
@@ -9,6 +10,8 @@ const SOCIALS = [
 ]
 
 export default function Contact() {
+  const { t } = useI18n()
+
   return (
     /* Full viewport height minus navbar — no scrolling needed */
     <div className="page-wrapper page-viewport">
@@ -21,14 +24,17 @@ export default function Contact() {
         >
           {/* ── Left — heading ─────────────────────────────── */}
           <div>
-            <p className="section-label">Contact</p>
+            <p className="section-label">{t('contact.label')}</p>
             <h1 className="contact-heading" style={{ marginBottom: '1.25rem' }}>
-              Let's build<br />something.
+              {t('contact.heading').split('\n').map((line, i, arr) => (
+                <span key={i}>
+                  {line}
+                  {i < arr.length - 1 && <br />}
+                </span>
+              ))}
             </h1>
             <p className="contact-sub" style={{ marginBottom: 0 }}>
-              Open to interesting projects, collaborations, and
-              conversations. Whether you have a project in mind or just
-              want to say hi — my inbox is always open.
+              {t('contact.sub')}
             </p>
           </div>
 
@@ -45,7 +51,7 @@ export default function Contact() {
               className="btn btn-primary"
               style={{ width: 'fit-content' }}
             >
-              Send an Email →
+              {t('contact.cta')}
             </a>
 
             {/* Socials */}
@@ -58,7 +64,7 @@ export default function Contact() {
                 color: 'var(--text-3)',
                 marginBottom: '1.25rem',
               }}>
-                Find me online
+                {t('contact.findMe')}
               </p>
               <div className="contact-socials" style={{ flexDirection: 'column', alignItems: 'flex-start', gap: '1rem' }}>
                 {SOCIALS.map((s) => (
@@ -87,7 +93,7 @@ export default function Contact() {
               lineHeight: 1.7,
             }}>
               ravnishkumar583@gmail.com<br />
-              New Delhi, India · Available for opportunities
+              {t('contact.location')}
             </div>
           </motion.div>
         </motion.div>

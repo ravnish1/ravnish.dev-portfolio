@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion'
+import { useI18n } from '../i18n/I18nContext'
 
 const POSTS = [
   {
@@ -23,6 +24,8 @@ const stagger = { animate: { transition: { staggerChildren: 0.09 } } }
 const fadeUp = { initial: { opacity: 0, y: 14 }, animate: { opacity: 1, y: 0 } }
 
 export default function Blogs() {
+  const { t } = useI18n()
+
   return (
     <div className="page-wrapper page-viewport">
       <div className="container">
@@ -35,7 +38,7 @@ export default function Blogs() {
 
           {/* ── LEFT — heading ────────────────────────────────── */}
           <motion.div variants={fadeUp} transition={{ duration: 0.45 }}>
-            <p className="section-label" style={{ marginBottom: '0.6rem' }}>Writing</p>
+            <p className="section-label" style={{ marginBottom: '0.6rem' }}>{t('blogs.label')}</p>
             <h1 style={{
               fontSize: 'clamp(2.5rem, 5vw, 4rem)',
               fontWeight: 700,
@@ -44,7 +47,7 @@ export default function Blogs() {
               color: 'var(--text-1)',
               marginBottom: '1.25rem',
             }}>
-              Blog
+              {t('blogs.title')}
             </h1>
             <p style={{
               fontSize: '0.9rem',
@@ -52,7 +55,7 @@ export default function Blogs() {
               lineHeight: 1.7,
               marginBottom: '2rem',
             }}>
-              Thoughts on technology, development, and AI.
+              {t('blogs.desc')}
             </p>
             <a
               href="https://medium.com/@ravkr9968"
@@ -61,7 +64,7 @@ export default function Blogs() {
               className="btn btn-ghost"
               style={{ fontSize: '0.78rem', padding: '0.6rem 1.2rem' }}
             >
-              Follow on Medium →
+              {t('blogs.followMedium')}
             </a>
           </motion.div>
 

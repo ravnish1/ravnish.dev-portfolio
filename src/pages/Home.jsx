@@ -1,24 +1,27 @@
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
+import { useI18n } from '../i18n/I18nContext'
 
 const fadeUp = { initial: { opacity: 0, y: 20 }, animate: { opacity: 1, y: 0 } }
 const stagger = { animate: { transition: { staggerChildren: 0.08, delayChildren: 0.04 } } }
 
-const STATS = [
-  { num: '10+', label: 'Projects' },
-  { num: '25+', label: 'Technologies' },
-  { num: '5+', label: 'Certs' },
-  { num: '5+', label: 'Hackathons' },
+const STATS_KEYS = [
+  { num: '10+', key: 'home.stats.projects' },
+  { num: '25+', key: 'home.stats.technologies' },
+  { num: '5+',  key: 'home.stats.certs' },
+  { num: '5+',  key: 'home.stats.hackathons' },
 ]
 
 const TECH = [
-  'Python', 'C++', 'Javascript', 'React',
+  'Python', 'C++', 'Javascript', 'React.js',
   'FastAPI', 'MongoDB', 'PostgreSQL',
   'MySQL', 'Firebase', 'Supabase', 'Neo4j', 'scikit-learn',
   'n8n', 'Claude Code', 'IoT & Robotics'
 ]
 
 export default function Home() {
+  const { t } = useI18n()
+
   return (
     /* ── Single viewport, vertically centered ─────────────────── */
     <div className="page-wrapper page-viewport">
@@ -38,7 +41,7 @@ export default function Home() {
               transition={{ duration: 0.45 }}
               style={{ marginBottom: '1.5rem' }}
             >
-              Building What Matters &nbsp;·&nbsp; Open to Opportunities
+              {t('home.eyebrow')}
             </motion.p>
 
             <motion.h1
@@ -53,7 +56,7 @@ export default function Home() {
                 marginBottom: '1rem',
               }}
             >
-              I BUILD
+              {t('home.title')}
             </motion.h1>
 
             <motion.div
@@ -63,9 +66,9 @@ export default function Home() {
             >
               <span
                 className="glitch-text"
-                data-text="I can do whatever you need, as long as I'm learning something or getting paid well enough for my time — preferably both."
+                data-text={t('home.tagline')}
               >
-                I can do whatever you need, as long as I'm learning something or getting paid well enough for my time, preferably both.
+                {t('home.tagline')}
               </span>
             </motion.div>
 
@@ -82,8 +85,8 @@ export default function Home() {
               variants={fadeUp}
               transition={{ duration: 0.45 }}
             >
-              <Link to="/projects" className="btn btn-primary">View Projects →</Link>
-              <Link to="/contactme" className="btn btn-ghost">Get in Touch</Link>
+              <Link to="/projects" className="btn btn-primary">{t('home.cta.projects')}</Link>
+              <Link to="/contactme" className="btn btn-ghost">{t('home.cta.contact')}</Link>
             </motion.div>
           </div>
 
@@ -95,9 +98,9 @@ export default function Home() {
           >
             {/* 2×2 stat grid */}
             <div className="stats-grid">
-              {STATS.map((s, i) => (
+              {STATS_KEYS.map((s, i) => (
                 <div
-                  key={s.label}
+                  key={s.key}
                   style={{
                     padding: '1.5rem',
                     borderRight: i % 2 === 0 ? '1px solid var(--border)' : 'none',
@@ -121,7 +124,7 @@ export default function Home() {
                     textTransform: 'uppercase',
                     color: 'var(--text-2)',
                   }}>
-                    {s.label}
+                    {t(s.key)}
                   </div>
                 </div>
               ))}
@@ -138,12 +141,12 @@ export default function Home() {
                 color: 'var(--text-1)',
                 marginBottom: '1.2rem',
               }}>
-                Hands-on Experience with
+                {t('home.techLabel')}
               </p>
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.4rem' }}>
-                {TECH.map((t) => (
+                {TECH.map((tech) => (
                   <span
-                    key={t}
+                    key={tech}
                     style={{
                       fontFamily: 'var(--font-mono)',
                       fontSize: '0.78rem',
@@ -154,7 +157,7 @@ export default function Home() {
                       borderRadius: '100px', // Visible oval pill shape
                     }}
                   >
-                    {t}
+                    {tech}
                   </span>
                 ))}
               </div>

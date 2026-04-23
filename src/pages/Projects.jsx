@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
 import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa'
+import { useI18n } from '../i18n/I18nContext'
 
 const PROJECTS = [
   {
@@ -44,6 +45,8 @@ const cardV = {
 }
 
 export default function Projects() {
+  const { t } = useI18n()
+
   return (
     <div className="page-wrapper projects-viewport">
       <div className="container" style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
@@ -62,7 +65,7 @@ export default function Projects() {
               letterSpacing: '-0.025em',
               color: 'var(--text-1)',
             }}>
-              Projects
+              {t('projects.title')}
             </h1>
           </div>
           <a
@@ -72,7 +75,7 @@ export default function Projects() {
             className="btn btn-ghost"
             style={{ fontSize: '0.78rem', padding: '0.8rem 1.4rem' }}
           >
-            View All on GitHub →
+            {t('projects.viewAll')}
           </a>
         </motion.div>
 
@@ -137,14 +140,14 @@ export default function Projects() {
                 marginTop: '0.25rem',
               }}>
                 <div style={{ display: 'flex', flexWrap: 'wrap', rowGap: '0.3rem', columnGap: '0.4rem', flex: 1, paddingRight: '1rem' }}>
-                  {p.tags.map((t, i) => (
-                    <span key={t} style={{
+                  {p.tags.map((tag, i) => (
+                    <span key={tag} style={{
                       fontFamily: 'var(--font-mono)',
                       fontSize: '0.62rem',
                       color: 'var(--text-3)',
                       letterSpacing: '0.05em',
                     }}>
-                      {t}{i < p.tags.length - 1 ? <span style={{ opacity: 0.5, margin: '0 0.1rem' }}>·</span> : ''}
+                      {tag}{i < p.tags.length - 1 ? <span style={{ opacity: 0.5, margin: '0 0.1rem' }}>·</span> : ''}
                     </span>
                   ))}
                 </div>
@@ -168,11 +171,11 @@ export default function Projects() {
                 >
                   {p.isLive ? (
                     <>
-                      <FaExternalLinkAlt size={10} /> Live Site
+                      <FaExternalLinkAlt size={10} /> {t('projects.liveSite')}
                     </>
                   ) : (
                     <>
-                      <FaGithub size={11} /> GitHub
+                      <FaGithub size={11} /> {t('projects.github')}
                     </>
                   )}
                 </a>
