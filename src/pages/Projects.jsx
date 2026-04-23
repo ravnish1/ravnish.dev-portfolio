@@ -5,16 +5,16 @@ import { useI18n } from '../i18n/I18nContext'
 const PROJECTS = [
   {
     index: '01',
-    title: 'Launch Live Studio Website',
-    desc: 'An immersive digital agency storefront built with Next.js and Framer Motion, featuring conversion-optimized architecture and high-fidelity animations. Engineered for peak performance and responsiveness to drive client engagement.',
+    titleKey: 'project.01.title',
+    descKey: 'project.01.desc',
     tags: ['Next.js', 'React', 'Framer Motion', 'Tailwind CSS', 'UI/UX'],
     href: 'https://www.launchlive.studio/',
     isLive: true,
   },
   {
     index: '02',
-    title: 'EquiLens AI',
-    desc: 'An AI-powered platform for real-time subtle bias detection from workplace communication and meeting transcripts.',
+    titleKey: 'project.02.title',
+    descKey: 'project.02.desc',
     tags: [
       'DistilBERT/BERT', 'scikit-learn', 'SHAP/LIME',
       'Kafka+Spark', 'MongoDB+HDFS', 'FastAPI+Uvicorn',
@@ -24,16 +24,16 @@ const PROJECTS = [
   },
   {
     index: '03',
-    title: 'Local LLM Response Evaluator',
-    desc: 'Compare two local LLM outputs side-by-side, collect human preference signals, and track results over time. Runs fully local with Ollama — no API keys, no cloud services.',
+    titleKey: 'project.03.title',
+    descKey: 'project.03.desc',
     tags: ['Python', 'Streamlit', 'Ollama', 'Pandas', 'Plotly'],
     href: 'https://github.com/ravnish1/local_llm-evaluator',
   },
 
   {
     index: '04',
-    title: 'HeyQT: Discord Bot',
-    desc: 'A high-performance Discord bot built with discord.py, featuring real-time audio streaming, AI-powered music generation, and seamless integration with YouTube and Spotify.',
+    titleKey: 'project.04.title',
+    descKey: 'project.04.desc',
     tags: ['Python', 'Discord.py', 'AI', 'Music'],
     href: 'https://github.com/ravnish1/HeyQT',
   },
@@ -118,7 +118,7 @@ export default function Projects() {
                 color: 'var(--text-1)',
                 letterSpacing: '-0.01em',
               }}>
-                {p.title}
+                {t(p.titleKey)}
               </h2>
 
               <p style={{
@@ -127,7 +127,7 @@ export default function Projects() {
                 lineHeight: 1.65,
                 flex: 1,
               }}>
-                {p.desc}
+                {t(p.descKey)}
               </p>
 
               {/* Footer */}
