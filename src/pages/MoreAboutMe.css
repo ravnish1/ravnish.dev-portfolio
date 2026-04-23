@@ -1,0 +1,111 @@
+.more-about-layout {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  overflow-y: auto;
+  scrollbar-width: none;
+}
+.more-about-layout::-webkit-scrollbar {
+  display: none;
+}
+
+.more-about-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 3rem;
+}
+
+.more-about-logo {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-2);
+}
+
+.more-about-title {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--text-1);
+  margin-bottom: 3rem;
+  text-align: center;
+}
+
+.more-about-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  width: 100%;
+  max-width: 1000px;
+}
+
+.more-about-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 3rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  transition: all 0.3s var(--ease);
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.more-about-card:hover {
+  background: rgba(255, 255, 255, 0.04);
+  border-color: var(--accent);
+  transform: translateY(-4px);
+}
+
+.more-about-icon {
+  font-size: 2.5rem;
+  color: var(--accent);
+  margin-bottom: 1.5rem;
+}
+
+.more-about-card-title {
+  font-family: var(--font-mono);
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: var(--text-1);
+  margin-bottom: 0.75rem;
+  text-transform: uppercase;
+}
+
+.more-about-card-desc {
+  font-size: 0.9rem;
+  color: var(--text-2);
+  line-height: 1.5;
+}
+
+.more-about-footer {
+  margin-top: 2rem;
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+}
+
+@media (max-width: 900px) {
+  .more-about-cards {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  .more-about-card {
+    padding: 2rem 1.5rem;
+  }
+  .more-about-title {
+    margin-bottom: 2rem;
+  }
+  .more-about-footer {
+    margin-top: 2rem;
+  }
+}

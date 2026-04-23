@@ -45,14 +45,6 @@ export default function Navbar() {
               {link.label}
             </Link>
           ))}
-          <a
-            href="/resume/RAVNISH_KUMAR_CV.pdf"
-            target="_blank"
-            rel="noreferrer"
-            className="nav-resume"
-          >
-            {t('nav.resume')}
-          </a>
           <LanguageSwitcher />
         </div>
       </div>

@@ -7,9 +7,9 @@ const stagger = { animate: { transition: { staggerChildren: 0.08, delayChildren:
 
 const STATS_KEYS = [
   { num: '10+', key: 'home.stats.projects' },
-  { num: '25+', key: 'home.stats.technologies' },
-  { num: '5+',  key: 'home.stats.certs' },
-  { num: '5+',  key: 'home.stats.hackathons' },
+  { num: '15+', key: 'home.stats.technologies' },
+  { num: '5+', key: 'home.stats.certifications' },
+  { num: '5+', key: 'home.stats.competitions' },
 ]
 
 const TECH = [
@@ -85,8 +85,8 @@ export default function Home() {
               variants={fadeUp}
               transition={{ duration: 0.45 }}
             >
-              <Link to="/projects" className="btn btn-primary">{t('home.cta.projects')}</Link>
-              <Link to="/contactme" className="btn btn-ghost">{t('home.cta.contact')}</Link>
+              <a href="/resume/RAVNISH_KUMAR_CV.pdf" target="_blank" rel="noreferrer" download className="btn btn-primary">{t('home.cta.resume')}</a>
+              <Link to="/more-about-me" className="btn btn-primary" style={{ background: 'transparent', border: '1px solid var(--accent)', color: 'var(--accent)' }}>Hire me</Link>
             </motion.div>
           </div>
 

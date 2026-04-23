@@ -9,6 +9,10 @@ import Home from './pages/Home'
 import Projects from './pages/Projects'
 import Contact from './pages/Contact'
 import Blogs from './pages/Blogs'
+import MoreAboutMe from './pages/MoreAboutMe'
+import JobOffer from './pages/JobOffer'
+import InternOffer from './pages/InternOffer'
+import FreelanceOffer from './pages/FreelanceOffer'
 
 import { I18nProvider } from './i18n/I18nContext'
 import { SpeedInsights } from '@vercel/speed-insights/react'
@@ -29,6 +33,10 @@ function App() {
           <Route path="/projects"  element={<Transition><Projects /></Transition>} />
           <Route path="/blogs"     element={<Transition><Blogs /></Transition>} />
           <Route path="/contactme" element={<Transition><Contact /></Transition>} />
+          <Route path="/more-about-me" element={<Transition><MoreAboutMe /></Transition>} />
+          <Route path="/hire/job" element={<Transition><JobOffer /></Transition>} />
+          <Route path="/hire/intern" element={<Transition><InternOffer /></Transition>} />
+          <Route path="/hire/freelance" element={<Transition><FreelanceOffer /></Transition>} />
           <Route path="*"          element={<Transition><Home /></Transition>} />
         </Routes>
       </AnimatePresence>

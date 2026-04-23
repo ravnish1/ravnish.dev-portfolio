@@ -4,15 +4,15 @@
    ═══════════════════════════════════════════════════════════════════ */
 
 export const LANGUAGES = [
-  { code: 'en', label: 'English',   flag: '🇬🇧', dir: 'ltr' },
-  { code: 'hi', label: 'हिन्दी',     flag: '🇮🇳', dir: 'ltr' },
-  { code: 'es', label: 'Español',   flag: '🇪🇸', dir: 'ltr' },
-  { code: 'fr', label: 'Français',  flag: '🇫🇷', dir: 'ltr' },
-  { code: 'de', label: 'Deutsch',   flag: '🇩🇪', dir: 'ltr' },
-  { code: 'ja', label: '日本語',     flag: '🇯🇵', dir: 'ltr' },
-  { code: 'ko', label: '한국어',     flag: '🇰🇷', dir: 'ltr' },
-  { code: 'ar', label: 'العربية',   flag: '🇸🇦', dir: 'rtl' },
-  { code: 'zh', label: '中文',       flag: '🇨🇳', dir: 'ltr' },
+  { code: 'en', label: 'English', flag: '🇬🇧', dir: 'ltr' },
+  { code: 'hi', label: 'हिन्दी', flag: '🇮🇳', dir: 'ltr' },
+  { code: 'es', label: 'Español', flag: '🇪🇸', dir: 'ltr' },
+  { code: 'fr', label: 'Français', flag: '🇫🇷', dir: 'ltr' },
+  { code: 'de', label: 'Deutsch', flag: '🇩🇪', dir: 'ltr' },
+  { code: 'ja', label: '日本語', flag: '🇯🇵', dir: 'ltr' },
+  { code: 'ko', label: '한국어', flag: '🇰🇷', dir: 'ltr' },
+  { code: 'ar', label: 'العربية', flag: '🇸🇦', dir: 'rtl' },
+  { code: 'zh', label: '中文', flag: '🇨🇳', dir: 'ltr' },
   { code: 'pt', label: 'Português', flag: '🇧🇷', dir: 'ltr' },
 ]
 
@@ -31,11 +31,12 @@ const translations = {
     'home.title': 'I BUILD',
     'home.tagline': "I can do whatever you need, as long as I'm learning something or getting paid well enough for my time, preferably both.",
     'home.cta.projects': 'View Projects →',
+    'home.cta.resume': 'Resume →',
     'home.cta.contact': 'Get in Touch',
     'home.stats.projects': 'Projects',
     'home.stats.technologies': 'Technologies',
-    'home.stats.certs': 'Certs',
-    'home.stats.hackathons': 'Hackathons',
+    'home.stats.certifications': 'Certifications',
+    'home.stats.competitions': 'Hackathon Wins',
     'home.techLabel': 'Hands-on Experience with',
 
     // Projects
@@ -64,7 +65,9 @@ const translations = {
     'contact.sub': 'Open to interesting projects, collaborations, and conversations. Whether you have a project in mind or just want to say hi — my inbox is always open.',
     'contact.cta': 'Send an Email →',
     'contact.findMe': 'Find me online',
-    'contact.location': 'New Delhi, India · Available for opportunities',
+    'contact.location': 'New Delhi, India',
+    'contact.openToRelocate': 'Open to Relocate',
+    'freelance.cta': 'Work With Me',
 
     // Language switcher
     'lang.label': 'Language',
@@ -86,8 +89,8 @@ const translations = {
     'home.cta.contact': 'संपर्क करें',
     'home.stats.projects': 'प्रोजेक्ट्स',
     'home.stats.technologies': 'टेक्नोलॉजीज़',
-    'home.stats.certs': 'सर्टिफिकेट',
-    'home.stats.hackathons': 'हैकथॉन',
+    'home.stats.certifications': 'प्रमाणपत्र',
+    'home.stats.competitions': 'प्रतियोगिताएँ',
     'home.techLabel': 'अनुभव इनके साथ',
 
     'projects.title': 'प्रोजेक्ट्स',
@@ -134,8 +137,8 @@ const translations = {
     'home.cta.contact': 'Contactar',
     'home.stats.projects': 'Proyectos',
     'home.stats.technologies': 'Tecnologías',
-    'home.stats.certs': 'Certs',
-    'home.stats.hackathons': 'Hackathons',
+    'home.stats.certifications': 'Certificaciones',
+    'home.stats.competitions': 'Competencias',
     'home.techLabel': 'Experiencia práctica con',
 
     'projects.title': 'Proyectos',
@@ -182,8 +185,8 @@ const translations = {
     'home.cta.contact': 'Me Contacter',
     'home.stats.projects': 'Projets',
     'home.stats.technologies': 'Technologies',
-    'home.stats.certs': 'Certifs',
-    'home.stats.hackathons': 'Hackathons',
+    'home.stats.certifications': 'Certifications',
+    'home.stats.competitions': 'Compétitions',
     'home.techLabel': 'Expérience pratique avec',
 
     'projects.title': 'Projets',
@@ -230,8 +233,8 @@ const translations = {
     'home.cta.contact': 'Kontakt aufnehmen',
     'home.stats.projects': 'Projekte',
     'home.stats.technologies': 'Technologien',
-    'home.stats.certs': 'Zertifikate',
-    'home.stats.hackathons': 'Hackathons',
+    'home.stats.certifications': 'Zertifizierungen',
+    'home.stats.competitions': 'Wettbewerbe',
     'home.techLabel': 'Praktische Erfahrung mit',
 
     'projects.title': 'Projekte',
@@ -278,8 +281,8 @@ const translations = {
     'home.cta.contact': 'お問い合わせ',
     'home.stats.projects': 'プロジェクト',
     'home.stats.technologies': '技術',
-    'home.stats.certs': '資格',
-    'home.stats.hackathons': 'ハッカソン',
+    'home.stats.certifications': '認定資格',
+    'home.stats.competitions': 'コンペティション',
     'home.techLabel': '実務経験',
 
     'projects.title': 'プロジェクト',
@@ -326,8 +329,8 @@ const translations = {
     'home.cta.contact': '연락하기',
     'home.stats.projects': '프로젝트',
     'home.stats.technologies': '기술',
-    'home.stats.certs': '자격증',
-    'home.stats.hackathons': '해커톤',
+    'home.stats.certifications': '자격 인증',
+    'home.stats.competitions': '대회',
     'home.techLabel': '실무 경험',
 
     'projects.title': '프로젝트',
@@ -374,8 +377,8 @@ const translations = {
     'home.cta.contact': 'تواصل معي',
     'home.stats.projects': 'مشاريع',
     'home.stats.technologies': 'تقنيات',
-    'home.stats.certs': 'شهادات',
-    'home.stats.hackathons': 'هاكاثون',
+    'home.stats.certifications': 'شهادات معتمدة',
+    'home.stats.competitions': 'مسابقات',
     'home.techLabel': 'خبرة عملية مع',
 
     'projects.title': 'المشاريع',
@@ -422,8 +425,8 @@ const translations = {
     'home.cta.contact': '联系我',
     'home.stats.projects': '项目',
     'home.stats.technologies': '技术栈',
-    'home.stats.certs': '证书',
-    'home.stats.hackathons': '黑客松',
+    'home.stats.certifications': '认证证书',
+    'home.stats.competitions': '竞赛',
     'home.techLabel': '实战经验',
 
     'projects.title': '项目',
@@ -470,8 +473,8 @@ const translations = {
     'home.cta.contact': 'Entre em Contato',
     'home.stats.projects': 'Projetos',
     'home.stats.technologies': 'Tecnologias',
-    'home.stats.certs': 'Certificados',
-    'home.stats.hackathons': 'Hackathons',
+    'home.stats.certifications': 'Certificações',
+    'home.stats.competitions': 'Competições',
     'home.techLabel': 'Experiência prática com',
 
     'projects.title': 'Projetos',
