@@ -21,15 +21,27 @@ export default async function handler(req, res) {
   } = req.body
 
   try {
+    // Debugging: Verify if environment variables are available (values masked)
+    console.log('--- SMTP Configuration Check ---')
+    console.log('SMTP_HOST:', process.env.SMTP_HOST ? '✅ Set' : '❌ Missing')
+    console.log('SMTP_USER:', process.env.SMTP_USER ? '✅ Set' : '❌ Missing')
+    console.log('SMTP_PASSWORD:', process.env.SMTP_PASSWORD ? '✅ Set' : '❌ Missing')
+    console.log('RECEIVER_EMAIL:', process.env.RECEIVER_EMAIL ? '✅ Set' : '❌ Missing')
+    console.log('---------------------------------')
+
     const transporter = nodemailer.createTransport({
       host: process.env.SMTP_HOST,
-      port: process.env.SMTP_PORT || 587,
+      port: Number(process.env.SMTP_PORT) || 587,
       secure: process.env.SMTP_SECURE === 'true', // true for 465, false for other ports
       auth: {
         user: process.env.SMTP_USER,
-        pass: process.env.SMTP_PASS,
+        pass: process.env.SMTP_PASSWORD,
       },
     })
+
+    // Verify connection configuration
+    await transporter.verify()
+    console.log('SMTP Connection: ✅ Verified')
 
     let subject = ''
     let htmlContent = ''
