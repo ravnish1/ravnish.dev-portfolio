@@ -937,7 +937,7 @@ button {
 
   .contact-layout {
     grid-template-columns: 1fr;
-    gap: 4rem;
+    gap: 2.5rem;
   }
 
   /* The header row automatically handles responsiveness via flex-wrap */
@@ -951,6 +951,10 @@ button {
   .page-viewport {
     padding-top: 160px;
     /* Account for the tall stacked mobile navbar + 1 padding space */
+  }
+
+  .contact-viewport {
+    padding-top: 110px;
   }
 
   .eyebrow-part {
@@ -1030,13 +1034,25 @@ button {
   }
 
   .contact-heading {
-    font-size: 2.75rem;
+    font-size: 2.25rem;
     line-height: 1.1;
+    margin-bottom: 1rem !important;
   }
 
   .contact-sub {
-    font-size: 0.95rem;
-    margin-bottom: 2.5rem;
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.5;
+  }
+
+  .contact-socials {
+    flex-direction: row !important;
+    gap: 1.5rem !important;
+    justify-content: center;
+  }
+
+  .contact-social {
+    font-size: 0.7rem;
   }
 
   /* Fix contact actions on mobile */

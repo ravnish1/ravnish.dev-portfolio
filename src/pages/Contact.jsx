@@ -28,7 +28,7 @@ export default function Contact() {
 
   return (
     /* Full viewport height minus navbar — no scrolling needed */
-    <div className="page-wrapper page-viewport">
+    <div className="page-wrapper page-viewport contact-viewport">
       <div className="container">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -78,11 +78,11 @@ export default function Contact() {
                 letterSpacing: '0.18em',
                 textTransform: 'uppercase',
                 color: 'var(--text-3)',
-                marginBottom: '1.25rem',
+                marginBottom: '1rem',
               }}>
                 {t('contact.findMe')}
               </p>
-              <div className="contact-socials" style={{ flexDirection: 'column', alignItems: 'flex-start', gap: '1rem' }}>
+              <div className="contact-socials">
                 {SOCIALS.map((s) => (
                   <a
                     key={s.label}
@@ -100,13 +100,13 @@ export default function Contact() {
 
             {/* Footer info */}
             <div style={{
-              paddingTop: '1.75rem',
+              paddingTop: '1.25rem',
               borderTop: '1px solid var(--border)',
               fontFamily: 'var(--font-mono)',
               fontSize: '0.7rem',
               color: 'var(--text-3)',
               letterSpacing: '0.08em',
-              lineHeight: 1.7,
+              lineHeight: 1.5,
             }}>
               ravnishkumar583@gmail.com<br />
               {t('contact.location')}

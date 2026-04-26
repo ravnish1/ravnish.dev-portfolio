@@ -81,16 +81,24 @@ export default function Projects() {
           transition={{ duration: 0.45 }}
           className="projects-header-row"
         >
-          <div>
-            <h1 style={{
-              fontSize: 'clamp(1.8rem, 3vw, 2.5rem)',
-              fontWeight: 700,
-              letterSpacing: '-0.025em',
-              color: 'var(--text-1)',
-            }}>
-              {t('projects.title')}
-            </h1>
-          </div>
+          <h1 style={{
+            fontSize: 'clamp(1.8rem, 3vw, 2.5rem)',
+            fontWeight: 700,
+            letterSpacing: '-0.025em',
+            color: 'var(--text-1)',
+          }}>
+            {t('projects.title')}
+          </h1>
+
+          <a
+            href="https://github.com/ravnish1?tab=repositories"
+            target="_blank"
+            rel="noreferrer"
+            className="btn btn-ghost"
+            style={{ fontSize: '0.72rem', padding: '0.6rem 1.2rem' }}
+          >
+            {t('projects.viewAll')}
+          </a>
         </motion.div>
 
         {/* ── 2×2 card grid ──────────────────────────────────── */}
@@ -227,15 +235,6 @@ export default function Projects() {
           >
             {t('projects.collaborate')}
           </Link>
-          <a
-            href="https://github.com/ravnish1?tab=repositories"
-            target="_blank"
-            rel="noreferrer"
-            className="btn btn-ghost"
-            style={{ fontSize: '0.72rem', padding: '0.6rem 1.2rem' }}
-          >
-            {t('projects.viewAll')}
-          </a>
         </motion.div>
 
       </div>
