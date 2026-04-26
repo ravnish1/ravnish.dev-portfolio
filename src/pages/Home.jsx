@@ -56,7 +56,7 @@ export default function Home() {
                 marginBottom: '1rem',
               }}
             >
-              {t('home.title')}
+              {t('home.title')} <span className="text-accent">{t('home.title.accent')}</span>
             </motion.h1>
 
             <motion.div
@@ -84,9 +84,21 @@ export default function Home() {
               className="hero-actions"
               variants={fadeUp}
               transition={{ duration: 0.45 }}
+              style={{ display: 'flex', alignItems: 'center', gap: '1.25rem' }}
             >
-              <a href="/resume/RAVNISH_KUMAR_CV.pdf" target="_blank" rel="noreferrer" download className="btn btn-primary">{t('home.cta.resume')}</a>
-              <Link to="/more-about-me" className="btn btn-primary" style={{ background: 'transparent', border: '1px solid var(--accent)', color: 'var(--accent)' }}>Hire me</Link>
+              <Link to="/more-about-me" className="btn btn-primary">Work With Me</Link>
+              <a href="/resume/RAVNISH_KUMAR_CV.pdf" target="_blank" rel="noreferrer" download className="btn btn-ghost" style={{ border: '1px solid var(--border)' }}>Get Resume</a>
+            </motion.div>
+
+            <motion.div 
+              variants={fadeUp}
+              transition={{ duration: 0.45, delay: 0.2 }}
+              style={{ marginTop: '2rem', display: 'flex', alignItems: 'center', gap: '0.75rem' }}
+            >
+              <div className="status-dot"></div>
+              <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.65rem', color: 'var(--text-3)', letterSpacing: '0.1em', textTransform: 'uppercase' }}>
+                Available for new collaborations
+              </span>
             </motion.div>
           </div>
 

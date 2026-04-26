@@ -1,11 +1,15 @@
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
+import { Link } from 'react-router-dom'
+import { FiArrowLeft } from 'react-icons/fi'
+import { useI18n } from '../i18n/I18nContext'
 import './JobOffer.css' // We can reuse the same CSS
 
 const fadeUp = { initial: { opacity: 0, y: 20 }, animate: { opacity: 1, y: 0 } }
 const stagger = { animate: { transition: { staggerChildren: 0.1, delayChildren: 0.1 } } }
 
 export default function InternOffer() {
+  const { t } = useI18n()
   const [formData, setFormData] = useState({
     companyName: '',
     email: '',
@@ -79,8 +83,12 @@ export default function InternOffer() {
           initial="initial"
           animate="animate"
         >
+          <div className="offer-header">
+            {/* Header left empty to remove the top back button impression */}
+          </div>
+
           <motion.h1 className="job-offer-title" variants={fadeUp}>
-            Proposing an Internship
+            {t('offer.intern.title')}
           </motion.h1>
 
           <motion.form className="job-offer-wrapper" onSubmit={handleSubmit} variants={fadeUp}>
@@ -88,12 +96,12 @@ export default function InternOffer() {
               <div className="form-grid">
               
               <div className="form-group">
-                <label className="form-label">Company Name *</label>
+                <label className="form-label">{t('offer.company')} *</label>
                 <input 
                   type="text" 
                   name="companyName" 
                   className="form-input" 
-                  placeholder="Your Company Name" 
+                  placeholder={t('offer.placeholder.company')} 
                   required 
                   value={formData.companyName}
                   onChange={handleChange}
@@ -101,7 +109,7 @@ export default function InternOffer() {
               </div>
 
               <div className="form-group">
-                <label className="form-label">Your Email *</label>
+                <label className="form-label">{t('offer.email')} *</label>
                 <input 
                   type="email" 
                   name="email" 
@@ -114,7 +122,7 @@ export default function InternOffer() {
               </div>
 
               <div className="form-group">
-                <label className="form-label">Role / Designation *</label>
+                <label className="form-label">{t('offer.designation')} *</label>
                 <select 
                   name="designation" 
                   className="form-select" 
@@ -122,7 +130,7 @@ export default function InternOffer() {
                   value={formData.designation}
                   onChange={handleChange}
                 >
-                  <option value="" disabled>Select the role...</option>
+                  <option value="" disabled>{t('offer.designation.select')}</option>
                   <option value="SDE Intern">SDE Intern</option>
                   <option value="Frontend Intern">Frontend Intern</option>
                   <option value="Backend Intern">Backend Intern</option>
@@ -132,12 +140,12 @@ export default function InternOffer() {
               </div>
 
               <div className="form-group">
-                <label className="form-label">Stipend (Per Month) *</label>
+                <label className="form-label">{t('offer.stipend')} *</label>
                 <input 
                   type="text" 
                   name="stipend" 
                   className="form-input" 
-                  placeholder="Amount in your currency" 
+                  placeholder={t('offer.placeholder.amount')} 
                   required 
                   value={formData.stipend}
                   onChange={handleChange}
@@ -145,7 +153,7 @@ export default function InternOffer() {
               </div>
 
               <div className="form-group">
-                <label className="form-label">Mobile Number (Optional)</label>
+                <label className="form-label">{t('offer.mobile')}</label>
                 <input 
                   type="tel" 
                   name="mobile" 
@@ -157,14 +165,14 @@ export default function InternOffer() {
               </div>
 
               <div className="form-group">
-                <label className="form-label">Focus Area</label>
+                <label className="form-label">{t('offer.work')}</label>
                 <select 
                   name="workAreas" 
                   className="form-select"
                   value={formData.workAreas}
                   onChange={handleChange}
                 >
-                  <option value="" disabled>Select focus areas...</option>
+                  <option value="" disabled>{t('offer.work.select')}</option>
                   <option value="React/Next.js UI">React/Next.js UI</option>
                   <option value="Node/FastAPI Backend">Node/FastAPI Backend</option>
                   <option value="Fullstack Features">Fullstack Features</option>
@@ -175,11 +183,11 @@ export default function InternOffer() {
               </div>
 
               <div className="form-group full-width">
-                <label className="form-label">Anything Else (Optional)</label>
+                <label className="form-label">{t('offer.additional')}</label>
                 <textarea 
                   name="additionalDetails" 
                   className="form-textarea" 
-                  placeholder="Any additional details..."
+                  placeholder="..."
                   value={formData.additionalDetails}
                   onChange={handleChange}
                 />
@@ -188,20 +196,28 @@ export default function InternOffer() {
             </div>
             </div>
 
-            <div className="form-submit-wrap" style={{ marginTop: '1rem' }}>
+            <div style={{ display: 'flex', gap: '1rem', marginTop: '1.5rem' }}>
               <button 
                 type="submit" 
                 className="btn btn-primary"
+                style={{ flex: 2 }}
                 disabled={status === 'sending' || cooldown > 0}
               >
                 {cooldown > 0 
-                  ? `Send another message after ${Math.ceil(cooldown / 60)}m` 
+                  ? t('offer.wait').replace('{{minutes}}', Math.ceil(cooldown / 60))
                   : status === 'sending' 
-                    ? 'Sending...' 
+                    ? t('offer.sending')
                     : status === 'success' 
-                      ? 'Offer Sent!' 
-                      : 'Submit Offer'}
+                      ? t('offer.sent')
+                      : t('offer.submit')}
               </button>
+              <Link 
+                to="/more-about-me" 
+                className="btn btn-ghost" 
+                style={{ flex: 1, textDecoration: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.8rem' }}
+              >
+                {t('offer.back')}
+              </Link>
             </div>
           </motion.form>
         </motion.div>

@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa'
 import { useI18n } from '../i18n/I18nContext'
@@ -68,15 +69,24 @@ export default function Projects() {
               {t('projects.title')}
             </h1>
           </div>
-          <a
-            href="https://github.com/ravnish1?tab=repositories"
-            target="_blank"
-            rel="noreferrer"
-            className="btn btn-ghost"
-            style={{ fontSize: '0.78rem', padding: '0.8rem 1.4rem' }}
-          >
-            {t('projects.viewAll')}
-          </a>
+          <div style={{ display: 'flex', gap: '1rem' }}>
+            <Link 
+              to="/more-about-me" 
+              className="btn btn-primary"
+              style={{ fontSize: '0.78rem', padding: '0.8rem 1.4rem' }}
+            >
+              {t('projects.collaborate')}
+            </Link>
+            <a
+              href="https://github.com/ravnish1?tab=repositories"
+              target="_blank"
+              rel="noreferrer"
+              className="btn btn-ghost"
+              style={{ fontSize: '0.78rem', padding: '0.8rem 1.4rem' }}
+            >
+              {t('projects.viewAll')}
+            </a>
+          </div>
         </motion.div>
 
         {/* ── 2×2 card grid ──────────────────────────────────── */}

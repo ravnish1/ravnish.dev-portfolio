@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
-import { FiCode, FiServer, FiLayout } from 'react-icons/fi'
+import { FiCode, FiServer, FiLayout, FiArrowLeft } from 'react-icons/fi'
+import { Link } from 'react-router-dom'
 import { useI18n } from '../i18n/I18nContext'
 import './FreelanceOffer.css'
 import './JobOffer.css' // Import for form styling
@@ -83,35 +84,38 @@ export default function FreelanceOffer() {
           initial="initial"
           animate="animate"
         >
+          <div className="offer-header" style={{ marginBottom: '1rem', width: '100%' }}>
+            {/* Header left empty to remove the top back button impression */}
+          </div>
           <div className="freelance-split">
 
             {/* LEFT SIDE: SERVICES */}
             <motion.div className="freelance-services" variants={fadeUp}>
-              <h1 className="freelance-title">Freelance Proposal</h1>
-              <p className="freelance-subtitle">Delivering high-performance digital products from concept to deployment.</p>
+              <h1 className="freelance-title">{t('offer.freelance.title')}</h1>
+              <p className="freelance-subtitle">{t('offer.freelance.subtitle')}</p>
 
               <div className="services-list">
                 <div className="service-item">
                   <div className="service-icon"><FiLayout /></div>
                   <div className="service-info">
-                    <h3>Frontend & Web Apps</h3>
-                    <p>React.js, Next.js, and modern UI architectures.</p>
+                    <h3>{t('offer.freelance.service1.title')}</h3>
+                    <p>{t('offer.freelance.service1.desc')}</p>
                   </div>
                 </div>
 
                 <div className="service-item">
                   <div className="service-icon"><FiServer /></div>
                   <div className="service-info">
-                    <h3>Backend APIs & Systems</h3>
-                    <p>Node.js, Express, FastAPI, and scalable databases.</p>
+                    <h3>{t('offer.freelance.service2.title')}</h3>
+                    <p>{t('offer.freelance.service2.desc')}</p>
                   </div>
                 </div>
 
                 <div className="service-item">
                   <div className="service-icon"><FiCode /></div>
                   <div className="service-info">
-                    <h3>Fullstack Solutions</h3>
-                    <p>End-to-end applications combining fast frontends with powerful APIs.</p>
+                    <h3>{t('offer.freelance.service3.title')}</h3>
+                    <p>{t('offer.freelance.service3.desc')}</p>
                   </div>
                 </div>
               </div>
@@ -124,24 +128,24 @@ export default function FreelanceOffer() {
                   <div className="form-grid">
 
                     <div className="form-group full-width">
-                      <label className="form-label">Client / Company Name *</label>
-                      <input type="text" name="companyName" className="form-input" placeholder="Name or Company" required value={formData.companyName} onChange={handleChange} />
+                      <label className="form-label">{t('offer.company')} *</label>
+                      <input type="text" name="companyName" className="form-input" placeholder={t('offer.placeholder.company')} required value={formData.companyName} onChange={handleChange} />
                     </div>
 
                     <div className="form-group">
-                      <label className="form-label">Your Email *</label>
+                      <label className="form-label">{t('offer.email')} *</label>
                       <input type="email" name="email" className="form-input" placeholder="email@domain.com" required value={formData.email} onChange={handleChange} />
                     </div>
 
                     <div className="form-group">
-                      <label className="form-label">Mobile Number</label>
+                      <label className="form-label">{t('offer.mobile')}</label>
                       <input type="tel" name="mobile" className="form-input" placeholder="+91 XXXXXXXXXX" value={formData.mobile} onChange={handleChange} />
                     </div>
 
                     <div className="form-group full-width">
-                      <label className="form-label">Service Needed *</label>
+                      <label className="form-label">{t('offer.work')} *</label>
                       <select name="workAreas" className="form-select" required value={formData.workAreas} onChange={handleChange}>
-                        <option value="" disabled>Select service...</option>
+                        <option value="" disabled>{t('offer.work.select')}</option>
                         <option value="Frontend Development (React/Next)">Frontend Development (React/Next)</option>
                         <option value="Backend Development (Node/FastAPI)">Backend Development (Node/FastAPI)</option>
                         <option value="Fullstack Application">Fullstack Application</option>
@@ -150,32 +154,44 @@ export default function FreelanceOffer() {
                     </div>
 
                     <div className="form-group">
-                      <label className="form-label">Estimated Budget *</label>
-                      <input type="text" name="budget" className="form-input" placeholder="$ / INR" required value={formData.budget} onChange={handleChange} />
+                      <label className="form-label">{t('offer.budget')} *</label>
+                      <input type="text" name="budget" className="form-input" placeholder={t('offer.placeholder.amount')} required value={formData.budget} onChange={handleChange} />
                     </div>
 
                     <div className="form-group">
-                      <label className="form-label">Timeline *</label>
-                      <input type="text" name="timeline" className="form-input" placeholder="e.g. 2-4 weeks" required value={formData.timeline} onChange={handleChange} />
+                      <label className="form-label">{t('offer.timeline')} *</label>
+                      <input type="text" name="timeline" className="form-input" placeholder={t('offer.placeholder.timeline')} required value={formData.timeline} onChange={handleChange} />
                     </div>
 
                     <div className="form-group full-width">
-                      <label className="form-label">Project Details</label>
-                      <textarea name="additionalDetails" className="form-textarea" style={{ height: '60px' }} placeholder="Tell me about the project..." value={formData.additionalDetails} onChange={handleChange} />
+                      <label className="form-label">{t('offer.freelance.details')}</label>
+                      <textarea name="additionalDetails" className="form-textarea" style={{ height: '60px' }} placeholder={t('offer.freelance.placeholder.details')} value={formData.additionalDetails} onChange={handleChange} />
                     </div>
                   </div>
                 </div>
 
-                <div className="form-submit-wrap" style={{ marginTop: '1rem' }}>
-                  <button type="submit" className="btn btn-primary" style={{ width: '100%', justifyContent: 'center' }} disabled={status === 'sending' || cooldown > 0}>
+                <div style={{ display: 'flex', gap: '1rem', marginTop: '1.5rem' }}>
+                  <button 
+                    type="submit" 
+                    className="btn btn-primary" 
+                    style={{ flex: 2, justifyContent: 'center' }} 
+                    disabled={status === 'sending' || cooldown > 0}
+                  >
                     {cooldown > 0 
-                      ? `Send another message after ${Math.ceil(cooldown / 60)}m` 
+                      ? t('offer.wait').replace('{{minutes}}', Math.ceil(cooldown / 60))
                       : status === 'sending' 
-                        ? 'Sending...' 
+                        ? t('offer.sending')
                         : status === 'success' 
-                          ? 'Proposal Sent!' 
-                          : t('freelance.cta', 'Work With Me')}
+                          ? t('offer.sent')
+                          : t('offer.submit')}
                   </button>
+                  <Link 
+                    to="/more-about-me" 
+                    className="btn btn-ghost" 
+                    style={{ flex: 1, textDecoration: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.8rem' }}
+                  >
+                    {t('offer.back')}
+                  </Link>
                 </div>
               </form>
             </motion.div>

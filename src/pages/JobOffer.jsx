@@ -1,11 +1,15 @@
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
+import { Link } from 'react-router-dom'
+import { FiArrowLeft } from 'react-icons/fi'
+import { useI18n } from '../i18n/I18nContext'
 import './JobOffer.css'
 
 const fadeUp = { initial: { opacity: 0, y: 20 }, animate: { opacity: 1, y: 0 } }
 const stagger = { animate: { transition: { staggerChildren: 0.1, delayChildren: 0.1 } } }
 
 export default function JobOffer() {
+  const { t } = useI18n()
   const [formData, setFormData] = useState({
     companyName: '',
     email: '',
@@ -82,8 +86,12 @@ export default function JobOffer() {
           initial="initial"
           animate="animate"
         >
+          <div className="offer-header">
+            {/* Header left empty to remove the top back button impression */}
+          </div>
+
           <motion.h1 className="job-offer-title" variants={fadeUp}>
-            Proposing a Job Offer
+            {t('offer.job.title')}
           </motion.h1>
 
           <motion.form className="job-offer-wrapper" onSubmit={handleSubmit} variants={fadeUp}>
@@ -91,12 +99,12 @@ export default function JobOffer() {
               <div className="form-grid">
               
               <div className="form-group">
-                <label className="form-label">Company Name *</label>
+                <label className="form-label">{t('offer.company')} *</label>
                 <input 
                   type="text" 
                   name="companyName" 
                   className="form-input" 
-                  placeholder="Your Company Name" 
+                  placeholder={t('offer.placeholder.company')} 
                   required 
                   value={formData.companyName}
                   onChange={handleChange}
@@ -104,7 +112,7 @@ export default function JobOffer() {
               </div>
 
               <div className="form-group">
-                <label className="form-label">Your Email *</label>
+                <label className="form-label">{t('offer.email')} *</label>
                 <input 
                   type="email" 
                   name="email" 
@@ -117,7 +125,7 @@ export default function JobOffer() {
               </div>
 
               <div className="form-group">
-                <label className="form-label">Designation *</label>
+                <label className="form-label">{t('offer.designation')} *</label>
                 <select 
                   name="designation" 
                   className="form-select" 
@@ -125,7 +133,7 @@ export default function JobOffer() {
                   value={formData.designation}
                   onChange={handleChange}
                 >
-                  <option value="" disabled>Select your role...</option>
+                  <option value="" disabled>{t('offer.designation.select')}</option>
                   <option value="SDE-1">SDE-1</option>
                   <option value="SDE-2">SDE-2</option>
                   <option value="Frontend Engineer">Frontend Engineer</option>
@@ -136,12 +144,12 @@ export default function JobOffer() {
               </div>
 
               <div className="form-group">
-                <label className="form-label">Offering CTC (Per Annum) *</label>
+                <label className="form-label">{t('offer.ctc')} *</label>
                 <input 
                   type="text" 
                   name="ctc" 
                   className="form-input" 
-                  placeholder="Amount in your currency" 
+                  placeholder={t('offer.placeholder.amount')} 
                   required 
                   value={formData.ctc}
                   onChange={handleChange}
@@ -149,7 +157,7 @@ export default function JobOffer() {
               </div>
 
               <div className="form-group">
-                <label className="form-label">Mobile Number (Optional)</label>
+                <label className="form-label">{t('offer.mobile')}</label>
                 <input 
                   type="tel" 
                   name="mobile" 
@@ -161,14 +169,14 @@ export default function JobOffer() {
               </div>
 
               <div className="form-group">
-                <label className="form-label">What I will be working on</label>
+                <label className="form-label">{t('offer.work')}</label>
                 <select 
                   name="workAreas" 
                   className="form-select"
                   value={formData.workAreas}
                   onChange={handleChange}
                 >
-                  <option value="" disabled>Select work areas...</option>
+                  <option value="" disabled>{t('offer.work.select')}</option>
                   <option value="Frontend Architecture">Frontend Architecture</option>
                   <option value="Backend Systems">Backend Systems</option>
                   <option value="Fullstack Product">Fullstack Product</option>
@@ -179,11 +187,11 @@ export default function JobOffer() {
               </div>
 
               <div className="form-group full-width">
-                <label className="form-label">Anything Else (Optional)</label>
+                <label className="form-label">{t('offer.additional')}</label>
                 <textarea 
                   name="additionalDetails" 
                   className="form-textarea" 
-                  placeholder="Any additional details..."
+                  placeholder="..."
                   value={formData.additionalDetails}
                   onChange={handleChange}
                 />
@@ -192,20 +200,28 @@ export default function JobOffer() {
             </div>
             </div>
 
-            <div className="form-submit-wrap" style={{ marginTop: '1rem' }}>
+            <div style={{ display: 'flex', gap: '1rem', marginTop: '1.5rem' }}>
               <button 
                 type="submit" 
                 className="btn btn-primary"
+                style={{ flex: 2 }}
                 disabled={status === 'sending' || cooldown > 0}
               >
                 {cooldown > 0 
-                  ? `Send another message after ${Math.ceil(cooldown / 60)}m` 
+                  ? t('offer.wait').replace('{{minutes}}', Math.ceil(cooldown / 60))
                   : status === 'sending' 
-                    ? 'Sending...' 
+                    ? t('offer.sending')
                     : status === 'success' 
-                      ? 'Offer Sent!' 
-                      : 'Submit Offer'}
+                      ? t('offer.sent')
+                      : t('offer.submit')}
               </button>
+              <Link 
+                to="/more-about-me" 
+                className="btn btn-ghost" 
+                style={{ flex: 1, textDecoration: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.8rem' }}
+              >
+                {t('offer.back')}
+              </Link>
             </div>
           </motion.form>
         </motion.div>
