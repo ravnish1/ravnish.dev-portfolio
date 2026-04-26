@@ -3,10 +3,9 @@ import { FaGithub, FaLinkedin, FaMedium } from 'react-icons/fa'
 import { useI18n } from '../i18n/I18nContext'
 
 const SOCIALS = [
-  { label: 'GitHub',          icon: <FaGithub />,  href: 'https://github.com/ravnish1' },
-  { label: 'LinkedIn',        icon: <FaLinkedin />, href: 'https://www.linkedin.com/in/ravnish-kumar/' },
-  { label: 'Medium',          icon: <FaMedium />,   href: 'https://medium.com/@ravkr9968' },
-  { label: 'Buy me a coffee', icon: '☕',            href: 'https://www.buymeacoffee.com/ravnishkumar' },
+  { label: 'GitHub', icon: <FaGithub />, href: 'https://github.com/ravnish1' },
+  { label: 'LinkedIn', icon: <FaLinkedin />, href: 'https://www.linkedin.com/in/ravnish-kumar/' },
+  { label: 'Medium', icon: <FaMedium />, href: 'https://medium.com/@ravkr9968' },
 ]
 
 export default function Contact() {
