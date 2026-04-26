@@ -1,6 +1,8 @@
+import { useState, useMemo, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa'
+import { FiCoffee, FiX, FiCheck } from 'react-icons/fi'
 import { useI18n } from '../i18n/I18nContext'
 
 const PROJECTS = [
@@ -47,6 +49,26 @@ const cardV = {
 
 export default function Projects() {
   const { t } = useI18n()
+  const [showTipModal, setShowTipModal] = useState(false)
+  const [selectedAmount, setSelectedAmount] = useState(51)
+  const [isMobile, setIsMobile] = useState(false)
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(/iPhone|iPad|iPod|Android/i.test(navigator.userAgent) || window.innerWidth < 768)
+    }
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    return () => window.removeEventListener('resize', checkMobile)
+  }, [])
+
+  const upiUri = useMemo(() => {
+    return `upi://pay?pa=ravnishkumar583@oksbi&pn=RAVNISH%20KUMAR&am=${selectedAmount}&cu=INR&tn=Support%20Ravnish%20Work&aid=uGICAgMC53cKIAw`
+  }, [selectedAmount])
+
+  const qrCodeUrl = useMemo(() => {
+    return `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(upiUri)}`
+  }, [upiUri])
 
   return (
     <div className="page-wrapper projects-viewport">
@@ -68,24 +90,6 @@ export default function Projects() {
             }}>
               {t('projects.title')}
             </h1>
-          </div>
-          <div style={{ display: 'flex', gap: '1rem' }}>
-            <Link 
-              to="/more-about-me" 
-              className="btn btn-primary"
-              style={{ fontSize: '0.78rem', padding: '0.8rem 1.4rem' }}
-            >
-              {t('projects.collaborate')}
-            </Link>
-            <a
-              href="https://github.com/ravnish1?tab=repositories"
-              target="_blank"
-              rel="noreferrer"
-              className="btn btn-ghost"
-              style={{ fontSize: '0.78rem', padding: '0.8rem 1.4rem' }}
-            >
-              {t('projects.viewAll')}
-            </a>
           </div>
         </motion.div>
 
@@ -194,7 +198,116 @@ export default function Projects() {
           ))}
         </motion.div>
 
+        {/* ── Footer Actions ─────────────────────────────────── */}
+        <motion.div
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.45, delay: 0.4 }}
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+            gap: '1rem',
+            paddingTop: '1.5rem',
+            marginTop: 'auto',
+            flexShrink: 0,
+            flexWrap: 'wrap'
+          }}
+        >
+          <button 
+            onClick={() => setShowTipModal(true)}
+            className="btn btn-ghost"
+            style={{ fontSize: '0.72rem', padding: '0.6rem 1.2rem' }}
+          >
+            <FiCoffee style={{ marginRight: '0.5rem' }} /> {t('fuel.label')}
+          </button>
+          <Link 
+            to="/more-about-me" 
+            className="btn btn-primary"
+            style={{ fontSize: '0.72rem', padding: '0.6rem 1.2rem' }}
+          >
+            {t('projects.collaborate')}
+          </Link>
+          <a
+            href="https://github.com/ravnish1?tab=repositories"
+            target="_blank"
+            rel="noreferrer"
+            className="btn btn-ghost"
+            style={{ fontSize: '0.72rem', padding: '0.6rem 1.2rem' }}
+          >
+            {t('projects.viewAll')}
+          </a>
+        </motion.div>
+
       </div>
+
+      {/* Fuel Modal */}
+      <AnimatePresence>
+        {showTipModal && (
+          <motion.div 
+            className="modal-overlay"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setShowTipModal(false)}
+          >
+            <motion.div 
+              className="tip-modal"
+              initial={{ scale: 0.9, y: 20, opacity: 0 }}
+              animate={{ scale: 1, y: 0, opacity: 1 }}
+              exit={{ scale: 0.9, y: 20, opacity: 0 }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <button className="modal-close" onClick={() => setShowTipModal(false)}>
+                <FiX />
+              </button>
+
+              <div className="tip-header">
+                <div className="tip-icon-glow">
+                  <FiCoffee />
+                </div>
+                <h2>{t('fuel.modal.title')}</h2>
+                <p>{t('fuel.modal.message')}</p>
+              </div>
+
+              <div className="amount-selector">
+                <p className="selector-label">{t('fuel.modal.select')}</p>
+                <div className="amount-options">
+                  {[21, 51, 101, 501].map(amt => (
+                    <button 
+                      key={amt}
+                      className={`amount-btn ${selectedAmount === amt ? 'active' : ''}`}
+                      onClick={() => setSelectedAmount(amt)}
+                    >
+                      ₹{amt}
+                      {selectedAmount === amt && <FiCheck className="check-icon" />}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              <div className="payment-action">
+                {isMobile ? (
+                  <a href={upiUri} className="btn btn-primary upi-pay-btn">
+                    {t('fuel.modal.pay').replace('{{amount}}', selectedAmount)}
+                  </a>
+                ) : (
+                  <div className="qr-fallback">
+                    <p className="qr-label">{t('fuel.modal.scan').replace('{{amount}}', selectedAmount)}</p>
+                    <div className="qr-frame">
+                      <img src={qrCodeUrl} alt="UPI QR Code" />
+                    </div>
+                    <p className="qr-help">{t('fuel.modal.help')}</p>
+                  </div>
+                )}
+              </div>
+              
+              <div className="tip-footer">
+                <p>{t('fuel.modal.footer')}</p>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   )
 }

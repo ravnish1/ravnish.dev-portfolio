@@ -99,11 +99,12 @@ button {
 
 /* Layout classes replacing inline styles */
 .page-viewport {
-  min-height: calc(100vh - 64px);
+  height: calc(100vh - 64px);
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 4rem 0;
+  padding: 2rem 0;
+  overflow: hidden;
 }
 
 /* Projects: locked to single viewport, no scroll */
@@ -335,6 +336,7 @@ button {
     opacity: 0;
     transform: translateY(-6px) scale(0.97);
   }
+
   to {
     opacity: 1;
     transform: translateY(0) scale(1);
@@ -934,20 +936,20 @@ button {
   }
 
   .page-viewport {
-    padding-top: 80px;
-    /* Reduced space for mobile navbar */
+    padding-top: 120px;
+    /* Account for the tall stacked mobile navbar */
   }
 
   .projects-viewport {
-    padding-top: 80px;
+    padding-top: 120px;
   }
 
   /* Fixed Mobile Navbar */
   .nav-inner {
-    padding: 0.75rem 1.25rem;
+    padding: 1rem 1.25rem;
     flex-direction: column;
     height: auto;
-    gap: 0.75rem;
+    gap: 1.1rem;
   }
 
   .nav-links {
@@ -1002,7 +1004,17 @@ button {
   }
 
   .contact-socials {
-    gap: 1.5rem;
+    gap: 1.25rem;
+  }
+
+  .contact-heading {
+    font-size: 2.75rem;
+    line-height: 1.1;
+  }
+
+  .contact-sub {
+    font-size: 0.95rem;
+    margin-bottom: 2rem;
   }
 
   .blog-row {
