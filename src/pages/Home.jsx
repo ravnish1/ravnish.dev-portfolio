@@ -39,16 +39,20 @@ export default function Home() {
               className="hero-eyebrow"
               variants={fadeUp}
               transition={{ duration: 0.45 }}
-              style={{ marginBottom: '1.5rem' }}
             >
-              {t('home.eyebrow')}
+              {t('home.eyebrow').split('·').map((part, i) => (
+                <span key={i} className="eyebrow-part">
+                  {part.trim()}
+                  {i === 0 && <span className="eyebrow-sep"> · </span>}
+                </span>
+              ))}
             </motion.p>
 
             <motion.h1
               variants={fadeUp}
               transition={{ duration: 0.55 }}
+              className="hero-title"
               style={{
-                fontSize: 'clamp(4.5rem, 8vw, 8rem)',
                 fontWeight: 800,
                 lineHeight: 0.9,
                 letterSpacing: '-0.035em',
@@ -76,7 +80,6 @@ export default function Home() {
               className="hero-desc"
               variants={fadeUp}
               transition={{ duration: 0.5 }}
-              style={{ marginBottom: '2.5rem', maxWidth: '420px' }}
             >
             </motion.p>
 
@@ -84,7 +87,6 @@ export default function Home() {
               className="hero-actions"
               variants={fadeUp}
               transition={{ duration: 0.45 }}
-              style={{ display: 'flex', alignItems: 'center', gap: '1.25rem' }}
             >
               <Link to="/more-about-me" className="btn btn-primary">Work With Me</Link>
               <a href="/resume/RAVNISH_KUMAR_CV.pdf" target="_blank" rel="noreferrer" download className="btn btn-ghost" style={{ border: '1px solid var(--border)' }}>Get Resume</a>

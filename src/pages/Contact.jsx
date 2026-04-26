@@ -55,18 +55,16 @@ export default function Contact() {
             style={{ display: 'flex', flexDirection: 'column', gap: '2.5rem' }}
           >
             {/* Primary CTA */}
-            <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
+            <div className="contact-actions">
               <a
                 href="mailto:ravnishkumar583@gmail.com"
                 className="btn btn-primary"
-                style={{ width: 'fit-content' }}
               >
                 {t('contact.cta')}
               </a>
               <button
                 onClick={() => setShowTipModal(true)}
                 className="btn btn-ghost"
-                style={{ padding: '0.85rem 1.25rem' }}
               >
                 <FiCoffee style={{ marginRight: '0.5rem' }} /> {t('fuel.label')}
               </button>
