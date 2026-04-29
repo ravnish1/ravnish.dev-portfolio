@@ -85,6 +85,15 @@ export default async function handler(req, res) {
         <p><strong>Project Details:</strong></p>
         <p>${additionalDetails || 'None'}</p>
       `
+    } else if (type === 'Message') {
+      subject = `New Message from ${companyName || 'Anonymous'}`
+      htmlContent = `
+        <h2>New Message</h2>
+        <p><strong>Name:</strong> ${companyName || 'Anonymous'}</p>
+        <p><strong>Email:</strong> ${email || 'Not provided'}</p>
+        <p><strong>Message:</strong></p>
+        <p>${additionalDetails || 'None'}</p>
+      `
     }
 
     const mailOptions = {

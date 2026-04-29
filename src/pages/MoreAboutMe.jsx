@@ -17,6 +17,16 @@ export default function MoreAboutMe() {
   useEffect(() => {
     window.scrollTo(0, 0)
     
+    // SEO Optimization
+    document.title = "More About Me | Ravnish Kumar - Full-Stack Developer"
+    let metaDesc = document.querySelector('meta[name="description"]')
+    if (!metaDesc) {
+      metaDesc = document.createElement('meta')
+      metaDesc.name = "description"
+      document.head.appendChild(metaDesc)
+    }
+    metaDesc.content = "Learn more about Ravnish Kumar, a Full-Stack Developer creating high-octane digital experiences optimized for speed and results. Open for Job, Intern, and Freelance opportunities."
+    
     // Check for mobile
     const checkMobile = () => {
       setIsMobile(/iPhone|iPad|iPod|Android/i.test(navigator.userAgent) || window.innerWidth < 768)
@@ -59,6 +69,33 @@ export default function MoreAboutMe() {
             {t('partnership.title_end')}
           </motion.h1>
 
+          {/* Bold Personality Section: Why Me? */}
+          <motion.div className="why-partner-section" variants={fadeUp}>
+            <div className="why-grid">
+              <div className="why-item">
+                <span className="why-number">01</span>
+                <div>
+                  <h4>{t('partnership.why.label1')}</h4>
+                  <p>{t('partnership.why.desc1')}</p>
+                </div>
+              </div>
+              <div className="why-item">
+                <span className="why-number">02</span>
+                <div>
+                  <h4>{t('partnership.why.label2')}</h4>
+                  <p>{t('partnership.why.desc2')}</p>
+                </div>
+              </div>
+              <div className="why-item">
+                <span className="why-number">03</span>
+                <div>
+                  <h4>{t('partnership.why.label3')}</h4>
+                  <p>{t('partnership.why.desc3')}</p>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+
           <motion.div className="more-about-cards" variants={stagger}>
             {/* JOB */}
             <Link to="/hire/job" style={{ textDecoration: 'none' }}>
@@ -94,40 +131,10 @@ export default function MoreAboutMe() {
             </Link>
           </motion.div>
 
-          {/* Bold Personality Section: Why Me? */}
-          <motion.div className="why-partner-section" variants={fadeUp}>
-            <div className="why-grid">
-              <div className="why-item">
-                <span className="why-number">01</span>
-                <div>
-                  <h4>{t('partnership.why.label1')}</h4>
-                  <p>{t('partnership.why.desc1')}</p>
-                </div>
-              </div>
-              <div className="why-item">
-                <span className="why-number">02</span>
-                <div>
-                  <h4>{t('partnership.why.label2')}</h4>
-                  <p>{t('partnership.why.desc2')}</p>
-                </div>
-              </div>
-              <div className="why-item">
-                <span className="why-number">03</span>
-                <div>
-                  <h4>{t('partnership.why.label3')}</h4>
-                  <p>{t('partnership.why.desc3')}</p>
-                </div>
-              </div>
-            </div>
-          </motion.div>
-
           {/* Interactive Footer */}
           <motion.div className="more-about-interactive-footer" variants={fadeUp}>
             <p className="footer-label">{t('partnership.footer.label')}</p>
             <div className="interactive-icons">
-              <Link to="/contactme" className="interactive-icon-item" data-label={t('contact.cta').replace(' →', '')}>
-                <FiMail />
-              </Link>
               <button 
                 onClick={() => setShowTipModal(true)} 
                 className="interactive-icon-item" 
@@ -136,7 +143,7 @@ export default function MoreAboutMe() {
               >
                 <FiCoffee />
               </button>
-              <Link to="/contactme" className="interactive-icon-item" data-label={t('fuel.message_label')}>
+              <Link to="/drop-message" className="interactive-icon-item" data-label={t('fuel.message_label')}>
                 <FiMessageSquare />
               </Link>
             </div>

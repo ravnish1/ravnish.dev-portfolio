@@ -17,6 +17,7 @@ import FreelanceOffer from './pages/FreelanceOffer'
 import { I18nProvider } from './i18n/I18nContext'
 import { SpeedInsights } from '@vercel/speed-insights/react'
 import { Analytics } from '@vercel/analytics/react'
+import DropMessage from './pages/DropMessage'
 
 function App() {
   const location = useLocation()
@@ -35,6 +36,7 @@ function App() {
           <Route path="/blogs"     element={<Transition><Blogs /></Transition>} />
           <Route path="/contactme" element={<Transition><Contact /></Transition>} />
           <Route path="/more-about-me" element={<Transition><MoreAboutMe /></Transition>} />
+          <Route path="/drop-message" element={<Transition><DropMessage /></Transition>} />
           <Route path="/hire/job" element={<Transition><JobOffer /></Transition>} />
           <Route path="/hire/intern" element={<Transition><InternOffer /></Transition>} />
           <Route path="/hire/freelance" element={<Transition><FreelanceOffer /></Transition>} />
