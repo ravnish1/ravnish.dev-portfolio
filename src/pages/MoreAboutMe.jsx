@@ -37,7 +37,10 @@ export default function MoreAboutMe() {
   }, [])
 
   const upiUri = useMemo(() => {
-    return `upi://pay?pa=ravnishkumar583@oksbi&pn=RAVNISH%20KUMAR&am=${selectedAmount}&cu=INR&tn=Support%20Ravnish%20Work&aid=uGICAgMC53cKIAw`
+    const pa = 'ravnishkumar583@oksbi'
+    const pn = encodeURIComponent('RAVNISH KUMAR')
+    const cu = 'INR'
+    return `upi://pay?pa=${pa}&pn=${pn}&am=${selectedAmount}&cu=${cu}`
   }, [selectedAmount])
 
   const qrCodeUrl = useMemo(() => {
