@@ -1,7 +1,8 @@
 import { useState, useMemo } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { FaGithub, FaLinkedin, FaMedium } from 'react-icons/fa'
-import { FiCoffee, FiX, FiCheck, FiInstagram } from 'react-icons/fi'
+import { FiCoffee, FiX, FiCheck, FiInstagram, FiMessageSquare } from 'react-icons/fi'
+import { Link } from 'react-router-dom'
 import { useI18n } from '../i18n/I18nContext'
 
 const SOCIALS = [
@@ -71,6 +72,12 @@ export default function Contact() {
               >
                 <FiCoffee style={{ marginRight: '0.5rem' }} /> {t('fuel.label')}
               </button>
+              <Link
+                to="/drop-message"
+                className="btn btn-ghost"
+              >
+                <FiMessageSquare style={{ marginRight: '0.5rem' }} /> {t('fuel.message_label')}
+              </Link>
             </div>
 
             {/* Socials */}
