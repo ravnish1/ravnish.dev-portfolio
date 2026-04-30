@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useI18n } from '../i18n/I18nContext'
 import './DropMessage.css'
 
@@ -9,6 +9,7 @@ const stagger = { animate: { transition: { staggerChildren: 0.1, delayChildren: 
 
 export default function DropMessage() {
   const { t } = useI18n()
+  const navigate = useNavigate()
   const [formData, setFormData] = useState({
     companyName: '',
     email: '',
@@ -181,13 +182,14 @@ export default function DropMessage() {
                 Send Anonymous
               </button>
 
-              <Link 
-                to="/more-about-me" 
+              <button 
+                type="button"
+                onClick={() => navigate(-1)} 
                 className="btn btn-ghost" 
                 style={{ flex: 0.5, minWidth: '100px', textDecoration: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.8rem' }}
               >
                 {t('offer.back') || 'Go Back'}
-              </Link>
+              </button>
             </div>
           </motion.form>
         </motion.div>

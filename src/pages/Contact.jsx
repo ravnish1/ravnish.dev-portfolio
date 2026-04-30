@@ -108,19 +108,6 @@ export default function Contact() {
               </div>
             </div>
 
-            {/* Footer info */}
-            <div style={{
-              paddingTop: '1.25rem',
-              borderTop: '1px solid var(--border)',
-              fontFamily: 'var(--font-mono)',
-              fontSize: '0.7rem',
-              color: 'var(--text-3)',
-              letterSpacing: '0.08em',
-              lineHeight: 1.5,
-            }}>
-              ravnishkumar583@gmail.com<br />
-              {t('contact.location')}
-            </div>
           </motion.div>
         </motion.div>
       </div>
