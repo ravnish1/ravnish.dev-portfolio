@@ -221,15 +221,15 @@ export default function Projects() {
             flexWrap: 'wrap'
           }}
         >
-          <button 
+          <button
             onClick={() => setShowTipModal(true)}
             className="btn btn-ghost"
             style={{ fontSize: '0.72rem', padding: '0.6rem 1.2rem' }}
           >
             <FiCoffee style={{ marginRight: '0.5rem' }} /> {t('fuel.label')}
           </button>
-          <Link 
-            to="/more-about-me" 
+          <Link
+            to="/more-about-me"
             className="btn btn-primary"
             style={{ fontSize: '0.72rem', padding: '0.6rem 1.2rem' }}
           >
@@ -242,14 +242,14 @@ export default function Projects() {
       {/* Fuel Modal */}
       <AnimatePresence>
         {showTipModal && (
-          <motion.div 
+          <motion.div
             className="modal-overlay"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={() => setShowTipModal(false)}
           >
-            <motion.div 
+            <motion.div
               className="tip-modal"
               initial={{ scale: 0.9, y: 20, opacity: 0 }}
               animate={{ scale: 1, y: 0, opacity: 1 }}
@@ -272,7 +272,7 @@ export default function Projects() {
                 <p className="selector-label">{t('fuel.modal.select')}</p>
                 <div className="amount-options">
                   {[21, 51, 101, 501].map(amt => (
-                    <button 
+                    <button
                       key={amt}
                       className={`amount-btn ${selectedAmount === amt ? 'active' : ''}`}
                       onClick={() => setSelectedAmount(amt)}
@@ -299,7 +299,7 @@ export default function Projects() {
                   </div>
                 )}
               </div>
-              
+
               <div className="tip-footer">
                 <p>{t('fuel.modal.footer')}</p>
               </div>

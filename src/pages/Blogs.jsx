@@ -3,11 +3,11 @@ import { useI18n } from '../i18n/I18nContext'
 
 const POSTS = [
   {
-    title: 'Harnessing the Power of AI: Why Some Thrive While Others Decline',
-    date: '2025',
-    readTime: '5 min read',
-    tags: ['AI', 'Technology', 'Innovation'],
-    href: 'https://medium.com/@ravkr9968/harnessing-the-power-of-ai-why-some-thrive-while-others-decline-bed3c4364bf4',
+    title: 'Building My First Drone Taught Me More Than Most Tutorials Ever Could',
+    date: '2026',
+    readTime: '4 min read',
+    tags: ['Engineering', 'Hardware', 'Drone'],
+    href: 'https://medium.com/@ravkr9968/building-my-first-drone-taught-me-more-than-most-tutorials-ever-could-d0444603c355',
     live: true,
   },
   {
@@ -16,6 +16,14 @@ const POSTS = [
     readTime: '2 min read',
     tags: ['AI', 'Technology', 'Security'],
     href: 'https://medium.com/@ravkr9968/understanding-the-recent-claude-code-source-code-leak-a-technical-analysis-3a9f07b41f88',
+    live: true,
+  },
+  {
+    title: 'Harnessing the Power of AI: Why Some Thrive While Others Decline',
+    date: '2025',
+    readTime: '5 min read',
+    tags: ['AI', 'Technology', 'Innovation'],
+    href: 'https://medium.com/@ravkr9968/harnessing-the-power-of-ai-why-some-thrive-while-others-decline-bed3c4364bf4',
     live: true,
   },
 ]
