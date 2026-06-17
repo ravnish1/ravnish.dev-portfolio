@@ -32,7 +32,7 @@ src/
   index.css       # Global design tokens + utility classes
 public/
   resume/         # PDF resume (served at /resume/RAVNISH_KUMAR_CV.pdf)
-  favicon.svg
+  favicon.png
 ```
 
 ## Local Development

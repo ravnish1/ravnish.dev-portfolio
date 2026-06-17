@@ -49,13 +49,15 @@ export default function MoreAboutMe() {
 
   return (
     <div className="page-wrapper projects-viewport">
-      <div className="container">
+      <div className="container h-full">
         <motion.div
-          className="more-about-layout"
+          className="more-about-layout dashboard-layout"
           variants={stagger}
           initial="initial"
           animate="animate"
         >
+          {/* LEFT COLUMN: The Pitch */}
+          <div className="dashboard-left">
           <div className="more-about-header">
             <div className="status-indicator">
               <span className="status-dot"></span>
@@ -69,7 +71,8 @@ export default function MoreAboutMe() {
           >
             {t('partnership.title_start')}
             <span className="text-accent">{t('partnership.title_accent')}</span>
-            {t('partnership.title_end')}
+            <br />
+            <span style={{ display: 'inline-block', marginTop: '0.2em' }}>{t('partnership.title_end').trim()}</span>
           </motion.h1>
 
           {/* Bold Personality Section: Why Me? */}
@@ -98,8 +101,17 @@ export default function MoreAboutMe() {
               </div>
             </div>
           </motion.div>
+          </div>
 
-          <motion.div className="more-about-cards" variants={stagger}>
+          {/* RIGHT COLUMN: Recruiter Action Center */}
+          <div className="dashboard-right">
+            <div className="recruiter-action-center">
+              <div className="action-center-header">
+                <span className="action-label">Make Your Move</span>
+                <div className="action-line"></div>
+              </div>
+
+          <motion.div className="more-about-cards hire-options-wrapper" variants={stagger}>
             {/* JOB */}
             <Link to="/hire/job" style={{ textDecoration: 'none' }}>
               <motion.div className="more-about-card" variants={fadeUp}>
@@ -108,6 +120,9 @@ export default function MoreAboutMe() {
                 </div>
                 <h3 className="more-about-card-title">{t('partnership.job.title')}</h3>
                 <p className="more-about-card-desc">{t('partnership.job.desc')}</p>
+                <div className="card-cta">
+                   --apply <FiArrowLeft style={{ transform: 'rotate(180deg)' }} className="card-cta-arrow" />
+                </div>
               </motion.div>
             </Link>
 
@@ -119,6 +134,9 @@ export default function MoreAboutMe() {
                 </div>
                 <h3 className="more-about-card-title">{t('partnership.intern.title')}</h3>
                 <p className="more-about-card-desc">{t('partnership.intern.desc')}</p>
+                <div className="card-cta">
+                   --apply <FiArrowLeft style={{ transform: 'rotate(180deg)' }} className="card-cta-arrow" />
+                </div>
               </motion.div>
             </Link>
 
@@ -130,31 +148,36 @@ export default function MoreAboutMe() {
                 </div>
                 <h3 className="more-about-card-title">{t('partnership.freelance.title')}</h3>
                 <p className="more-about-card-desc">{t('partnership.freelance.desc')}</p>
+                <div className="card-cta">
+                  --lets-talk <FiArrowLeft style={{ transform: 'rotate(180deg)' }} className="card-cta-arrow" />
+                </div>
               </motion.div>
             </Link>
           </motion.div>
 
-          {/* Interactive Footer */}
-          <motion.div className="more-about-interactive-footer" variants={fadeUp}>
-            <p className="footer-label">{t('partnership.footer.label')}</p>
-            <div className="interactive-icons">
-              <button 
-                onClick={() => setShowTipModal(true)} 
-                className="interactive-icon-item" 
-                data-label={t('fuel.label')}
-                style={{ border: 'none', cursor: 'pointer' }}
-              >
-                <FiCoffee />
-              </button>
-              <Link to="/drop-message" className="interactive-icon-item" data-label={t('fuel.message_label')}>
-                <FiMessageSquare />
+          {/* Direct Contact Section */}
+          <motion.div className="more-about-contact-section" variants={fadeUp}>
+            <div className="contact-divider"></div>
+            <h2 className="more-about-contact-heading">{t('partnership.footer.label')}</h2>
+            
+            <div className="contact-actions-large">
+              <Link to="/drop-message" className="btn-massive-magnetic">
+                <span className="btn-glitch-text">{t('fuel.message_label')}</span>
+                <FiMessageSquare className="btn-massive-icon" />
               </Link>
+              
+              <button onClick={() => setShowTipModal(true)} className="btn-secondary-fuel">
+                <FiCoffee />
+                {t('fuel.label')}
+              </button>
             </div>
             
-            <Link to="/" className="btn btn-ghost" style={{ marginTop: '1.5rem', fontSize: '0.75rem', letterSpacing: '0.05em' }}>
-              <FiArrowLeft style={{ marginRight: '0.5rem' }} /> {t('partnership.back')}
+            <Link to="/" className="back-home-link">
+              <FiArrowLeft className="back-arrow" /> {t('partnership.back')}
             </Link>
           </motion.div>
+            </div>
+          </div>
         </motion.div>
       </div>
 

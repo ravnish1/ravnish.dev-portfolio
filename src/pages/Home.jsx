@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { useI18n } from '../i18n/I18nContext'
+import GitHubHeatmap from '../components/GitHubHeatmap'
 
 const fadeUp = { initial: { opacity: 0, y: 20 }, animate: { opacity: 1, y: 0 } }
 const stagger = { animate: { transition: { staggerChildren: 0.08, delayChildren: 0.04 } } }
@@ -35,18 +36,7 @@ export default function Home() {
 
           {/* ── LEFT — identity + CTA ────────────────────────── */}
           <div>
-            <motion.p
-              className="hero-eyebrow"
-              variants={fadeUp}
-              transition={{ duration: 0.45 }}
-            >
-              {t('home.eyebrow').split('·').map((part, i) => (
-                <span key={i} className="eyebrow-part">
-                  {part.trim()}
-                  {i === 0 && <span className="eyebrow-sep"> · </span>}
-                </span>
-              ))}
-            </motion.p>
+
 
             <motion.h1
               variants={fadeUp}
@@ -92,6 +82,15 @@ export default function Home() {
               <a href="/resume/RAVNISH_KUMAR_CV.pdf" target="_blank" rel="noreferrer" download className="btn btn-ghost" style={{ border: '1px solid var(--border)' }}>Get Resume</a>
             </motion.div>
 
+            {/* ── GitHub Activity (First Place / Primary Focus) ───────────────── */}
+            <motion.div 
+              variants={fadeUp} 
+              transition={{ duration: 0.55, delay: 0.2 }}
+              style={{ marginTop: '2.5rem' }}
+            >
+              <GitHubHeatmap />
+            </motion.div>
+
             <motion.div 
               variants={fadeUp}
               transition={{ duration: 0.45, delay: 0.2 }}
@@ -99,7 +98,7 @@ export default function Home() {
             >
               <div className="status-dot"></div>
               <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.65rem', color: 'var(--text-3)', letterSpacing: '0.1em', textTransform: 'uppercase' }}>
-                Available for new collaborations
+                Available for work
               </span>
             </motion.div>
           </div>

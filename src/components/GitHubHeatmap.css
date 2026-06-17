@@ -1,0 +1,122 @@
+.github-heatmap-container {
+  margin-top: 1.5rem;
+  width: 100%;
+}
+
+.heatmap-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 0.75rem;
+}
+
+.heatmap-title {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-2);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin: 0;
+}
+
+.heatmap-total {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--text-3);
+}
+
+.heatmap-grid {
+  display: flex;
+  gap: 3px;
+  flex-wrap: wrap; /* Ensure all cells are visible and wrap if necessary */
+}
+
+.heatmap-week {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.heatmap-cell {
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+  position: relative;
+  cursor: pointer;
+}
+
+/* Color Scale: from dark to bright lime var(--accent) */
+.heatmap-cell.level-0 {
+  background: rgba(255, 255, 255, 0.03); /* Near black/dark grey */
+}
+
+.heatmap-cell.level-1 {
+  background: rgba(200, 241, 53, 0.2); /* Dim lime */
+}
+
+.heatmap-cell.level-2 {
+  background: rgba(200, 241, 53, 0.45);
+}
+
+.heatmap-cell.level-3 {
+  background: rgba(200, 241, 53, 0.7);
+}
+
+.heatmap-cell.level-4 {
+  background: var(--accent); /* Full bright lime */
+  box-shadow: 0 0 4px rgba(200, 241, 53, 0.3);
+}
+
+/* Skeleton Loading State */
+.skeleton-cell {
+  background: rgba(255, 255, 255, 0.02);
+  animation: pulse-skeleton 1.5s infinite ease-in-out;
+}
+
+@keyframes pulse-skeleton {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+
+/* Today's Pulse Glow Ring */
+.heatmap-cell.is-today::after {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border: 1px solid var(--accent);
+  border-radius: 3px;
+  animation: today-pulse 2s infinite ease-in-out;
+  pointer-events: none;
+}
+
+@keyframes today-pulse {
+  0% { transform: scale(0.9); opacity: 0; }
+  50% { transform: scale(1.1); opacity: 0.8; }
+  100% { transform: scale(1.3); opacity: 0; }
+}
+
+/* Tooltip Styles */
+.heatmap-tooltip {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-6px);
+  background: #0a0a0a;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 0.4rem 0.5rem;
+  border-radius: 4px;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--text-2);
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.2s;
+  z-index: 10;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+}
+
+.heatmap-cell:hover .heatmap-tooltip {
+  opacity: 1;
+}
