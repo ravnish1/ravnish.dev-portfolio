@@ -28,18 +28,20 @@
 .heatmap-grid {
   display: flex;
   gap: 3px;
-  flex-wrap: wrap; /* Ensure all cells are visible and wrap if necessary */
+  flex-wrap: nowrap; /* Do not wrap to fit in single viewport */
 }
 
 .heatmap-week {
   display: flex;
   flex-direction: column;
   gap: 3px;
+  flex: 0 1 10px;
+  min-width: 0;
 }
 
 .heatmap-cell {
-  width: 10px;
-  height: 10px;
+  width: 100%;
+  aspect-ratio: 1;
   border-radius: 2px;
   position: relative;
   cursor: pointer;
