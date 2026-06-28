@@ -1,6 +1,8 @@
 import { useEffect } from 'react'
 import { Routes, Route, useLocation } from 'react-router-dom'
 import { AnimatePresence } from 'framer-motion'
+import Preloader from './components/Preloader'
+import FloatingCTA from './components/FloatingCTA'
 import Background from './components/Background'
 import Navbar from './components/Navbar'
 import Transition from './components/Transition'
@@ -27,6 +29,8 @@ function App() {
 
   return (
     <I18nProvider>
+      <Preloader />
+      <FloatingCTA />
       <Background />
       <Navbar />
       <AnimatePresence mode="wait">

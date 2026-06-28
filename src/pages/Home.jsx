@@ -50,7 +50,7 @@ export default function Home() {
                 marginBottom: '1rem',
               }}
             >
-              {t('home.title')} <span className="text-accent">{t('home.title.accent')}</span>
+              {t('home.title')} <span className="text-accent shady-value" data-text={t('home.title.accent')}>{t('home.title.accent')}</span>
             </motion.h1>
 
             <motion.div
@@ -114,14 +114,14 @@ export default function Home() {
               {STATS_KEYS.map((s, i) => (
                 <div
                   key={s.key}
-                  style={{
-                    padding: '1.5rem',
-                    borderRight: i % 2 === 0 ? '1px solid var(--border)' : 'none',
-                    borderBottom: i < 2 ? '1px solid var(--border)' : 'none',
-                  }}
+                    style={{
+                      padding: 'clamp(1rem, 2vw, 1.5rem)',
+                      borderRight: i % 2 === 0 ? '1px solid var(--border)' : 'none',
+                      borderBottom: i < 2 ? '1px solid var(--border)' : 'none',
+                    }}
                 >
                   <div style={{
-                    fontSize: '2.75rem',
+                    fontSize: 'clamp(2rem, 3.5vw, 2.75rem)',
                     fontWeight: 700,
                     letterSpacing: '-0.04em',
                     color: 'var(--text-1)',
