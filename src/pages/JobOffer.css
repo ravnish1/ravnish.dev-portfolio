@@ -6,7 +6,8 @@
   min-height: 100%;
   width: 100%;
   padding-top: 1rem;
-  overflow: hidden;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 .job-offer-layout::-webkit-scrollbar {
   display: none;

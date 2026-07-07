@@ -6,7 +6,8 @@
   width: 100%;
   min-height: 100%;
   padding-top: 1rem;
-  overflow: hidden;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .freelance-layout::-webkit-scrollbar {
