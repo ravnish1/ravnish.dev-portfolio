@@ -1,11 +1,12 @@
 import { useState, useEffect } from 'react'
-import { motion } from 'framer-motion'
-import { Link, useNavigate } from 'react-router-dom'
+import { motion, AnimatePresence } from 'framer-motion'
+import { useNavigate } from 'react-router-dom'
 import { useI18n } from '../i18n/I18nContext'
+import { FiArrowLeft, FiGithub, FiLinkedin, FiMail } from 'react-icons/fi'
 import './DropMessage.css'
 
 const fadeUp = { initial: { opacity: 0, y: 20 }, animate: { opacity: 1, y: 0 } }
-const stagger = { animate: { transition: { staggerChildren: 0.1, delayChildren: 0.1 } } }
+const stagger = { animate: { transition: { staggerChildren: 0.08, delayChildren: 0.12 } } }
 
 export default function DropMessage() {
   const { t } = useI18n()
@@ -87,12 +88,22 @@ export default function DropMessage() {
       alert("Message is required to send anonymously!")
       return
     }
-    const payload = {
+    sendPayload({
       companyName: 'Anonymous',
       email: 'anonymous@hidden.com',
       additionalDetails: formData.additionalDetails
+    })
+  }
+
+  const isDisabled = status === 'sending' || cooldown > 0
+
+  const getButtonText = () => {
+    if (cooldown > 0) {
+      return t('offer.wait')?.replace('{{minutes}}', Math.ceil(cooldown / 60)) || `Wait ${Math.ceil(cooldown / 60)}m`
     }
-    sendPayload(payload)
+    if (status === 'sending') return t('offer.sending') || 'Sending...'
+    if (status === 'success') return t('offer.sent') || 'Sent!'
+    return 'Send'
   }
 
   return (
@@ -104,94 +115,137 @@ export default function DropMessage() {
           initial="initial"
           animate="animate"
         >
-          <div className="offer-header"></div>
+          <div className="dm-container">
+            {/* ─── LEFT: Heading + Form ─── */}
+            <motion.div className="dm-left" variants={fadeUp}>
+              <h1 className="dm-heading">
+                Drop a<br /><span className="accent">Message</span>
+              </h1>
+              <p className="dm-subtitle">
+                Please feel free to drop a message and we
+                will get back to you as soon as we can.
+              </p>
 
-          <motion.h1 className="drop-message-title" variants={fadeUp}>
-            Drop a Message
-          </motion.h1>
-          <motion.p className="drop-message-subtitle" variants={fadeUp}>
-            Suggestions, feedback, or just a hi!
-          </motion.p>
+              <form onSubmit={handleSubmit}>
+                <div className="dm-fields">
+                  <div className="dm-field">
+                    <div className="dm-field-inner">
+                      <input 
+                        type="text"
+                        name="companyName"
+                        placeholder="Name"
+                        autoComplete="name"
+                        value={formData.companyName}
+                        onChange={handleChange}
+                      />
+                    </div>
+                  </div>
 
-          <motion.form className="drop-message-wrapper" onSubmit={handleSubmit} variants={fadeUp}>
-            <div className="drop-message-form">
-              <div className="form-grid">
-              
-              <div className="form-group">
-                <label className="form-label">Name (Optional)</label>
-                <input 
-                  type="text" 
-                  name="companyName" 
-                  className="form-input" 
-                  placeholder="Your Name" 
-                  value={formData.companyName}
-                  onChange={handleChange}
-                />
+                  <div className="dm-field">
+                    <div className="dm-field-inner">
+                      <input 
+                        type="email"
+                        name="email"
+                        placeholder="Email"
+                        autoComplete="email"
+                        value={formData.email}
+                        onChange={handleChange}
+                      />
+                    </div>
+                  </div>
+
+                  <div className="dm-field">
+                    <div className="dm-field-inner">
+                      <textarea 
+                        name="additionalDetails"
+                        placeholder="Message"
+                        required
+                        value={formData.additionalDetails}
+                        onChange={handleChange}
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                <div className="dm-actions">
+                  <button 
+                    type="submit" 
+                    className="dm-btn-send"
+                    disabled={isDisabled}
+                  >
+                    {getButtonText()}
+                  </button>
+                  <button 
+                    type="button"
+                    onClick={handleAnonymous}
+                    className="dm-btn-anon"
+                    disabled={isDisabled}
+                  >
+                    Send Anonymous
+                  </button>
+                </div>
+              </form>
+            </motion.div>
+
+            {/* ─── RIGHT: Info ─── */}
+            <motion.div className="dm-right" variants={fadeUp}>
+              <div className="dm-info-block">
+                <span className="dm-info-label">Reach out</span>
+                <p className="dm-info-text">
+                  <a href="mailto:ravnishkumar583@gmail.com">ravnishkumar583@gmail.com</a>
+                </p>
               </div>
 
-              <div className="form-group">
-                <label className="form-label">Email (Optional)</label>
-                <input 
-                  type="email" 
-                  name="email" 
-                  className="form-input" 
-                  placeholder="your@email.com" 
-                  value={formData.email}
-                  onChange={handleChange}
-                />
+              <div className="dm-info-block">
+                <span className="dm-info-label">Response time</span>
+                <p className="dm-info-text">
+                  Usually within 24 hours.<br />
+                  Anonymous messages are read too.
+                </p>
               </div>
 
-              <div className="form-group full-width">
-                <label className="form-label">Message *</label>
-                <textarea 
-                  name="additionalDetails" 
-                  className="form-textarea message-textarea" 
-                  placeholder="Your message, suggestions etc..."
-                  required
-                  value={formData.additionalDetails}
-                  onChange={handleChange}
-                />
+              <div className="dm-info-block">
+                <span className="dm-info-label">Connect</span>
+                <div className="dm-socials">
+                  <a href="https://github.com/ravnish1" target="_blank" rel="noopener noreferrer" className="dm-social-link" aria-label="GitHub">
+                    <FiGithub />
+                  </a>
+                  <a href="https://www.linkedin.com/in/ravnish-kumar/" target="_blank" rel="noopener noreferrer" className="dm-social-link" aria-label="LinkedIn">
+                    <FiLinkedin />
+                  </a>
+                  <a href="mailto:ravnishkumar583@gmail.com" className="dm-social-link" aria-label="Email">
+                    <FiMail />
+                  </a>
+                </div>
               </div>
 
-            </div>
-            </div>
+              <div className="dm-back">
+                <button 
+                  type="button"
+                  onClick={() => navigate(-1)} 
+                  className="dm-btn-back"
+                >
+                  <FiArrowLeft />
+                  {t('offer.back') || 'Go Back'}
+                </button>
+              </div>
+            </motion.div>
+          </div>
 
-            <div style={{ display: 'flex', gap: '1rem', marginTop: '1.5rem', flexWrap: 'wrap' }}>
-              <button 
-                type="submit" 
-                className="btn btn-primary"
-                style={{ flex: 1, minWidth: '150px' }}
-                disabled={status === 'sending' || cooldown > 0}
+          {/* Status Toast */}
+          <AnimatePresence>
+            {(status === 'success' || status === 'error') && (
+              <motion.div 
+                className={`dm-toast ${status}`}
+                initial={{ opacity: 0, y: 20, x: '-50%' }}
+                animate={{ opacity: 1, y: 0, x: '-50%' }}
+                exit={{ opacity: 0, y: 10, x: '-50%' }}
               >
-                {cooldown > 0 
-                  ? (t('offer.wait')?.replace('{{minutes}}', Math.ceil(cooldown / 60)) || `Wait ${Math.ceil(cooldown / 60)}m`)
-                  : status === 'sending' 
-                    ? (t('offer.sending') || 'Sending...')
-                    : status === 'success' 
-                      ? (t('offer.sent') || 'Sent!')
-                      : 'Send Message'}
-              </button>
-              
-              <button 
-                type="button" 
-                onClick={handleAnonymous}
-                className="btn btn-ghost"
-                style={{ flex: 1, minWidth: '150px', border: '1px solid var(--border)' }}
-                disabled={status === 'sending' || cooldown > 0}
-              >
-                Send Anonymous
-              </button>
+                {status === 'success' ? '✓ Message sent' : '✕ Something went wrong'}
+              </motion.div>
+            )}
+          </AnimatePresence>
 
-              <button 
-                type="button"
-                onClick={() => navigate(-1)} 
-                className="btn btn-ghost" 
-                style={{ flex: 0.5, minWidth: '100px', textDecoration: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.8rem' }}
-              >
-                {t('offer.back') || 'Go Back'}
-              </button>
-            </div>
-          </motion.form>
         </motion.div>
       </div>
     </div>
